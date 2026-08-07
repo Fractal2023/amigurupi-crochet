@@ -13,17 +13,17 @@ const promesas = [
   {
     titulo: `${marca.anios} años de experiencia`,
     texto:
-      "Cientos de horas de práctica que se notan en la tensión del punto y en el acabado de cada figura.",
+      "Cientos de horas de oficio que se notan en la tensión del punto y en el acabado de cada amigurumi.",
   },
   {
     titulo: "Diseños únicos",
     texto:
-      "Cada encargo nace de cero. No repito piezas ni vendo tu diseño a nadie más.",
+      "Cada encargo nace de cero. No repetimos piezas ni vendemos tu diseño a nadie más.",
   },
   {
     titulo: "Atención personalizada",
     texto:
-      "Hablas directamente conmigo. Te comparto avances y ajustamos hasta que quede como lo imaginabas.",
+      "Hablas directamente con el taller. Te compartimos avances y ajustamos hasta que quede como lo imaginabas.",
   },
   {
     titulo: "Materiales de calidad",
@@ -117,20 +117,6 @@ export function Sobre() {
               className="object-cover"
             />
           </motion.div>
-
-          {/* Sello de años de oficio */}
-          <Revelar retraso={0.2}>
-            <div className="vidrio absolute -left-3 top-6 flex items-center gap-3 rounded-full py-2.5 pl-2.5 pr-5 shadow-[var(--shadow-alta)] sm:-left-6">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-[linear-gradient(135deg,var(--color-rosa-400),var(--color-coral))] font-display text-lg leading-none text-white">
-                {marca.anios}
-              </span>
-              <span className="text-[0.75rem] font-semibold uppercase leading-tight tracking-[0.14em] text-tinta-70">
-                años
-                <br />
-                de oficio
-              </span>
-            </div>
-          </Revelar>
         </div>
 
         {/* ---------- Texto ---------- */}
@@ -150,22 +136,24 @@ export function Sobre() {
           <Revelar retraso={0.12}>
             <div className="mt-7 space-y-5 text-[1.0625rem] leading-[1.7] text-tinta-70">
               <p>
-                Soy Lucía y llevo{" "}
+                En <strong className="font-semibold text-tinta">Amigurupi</strong>{" "}
+                llevamos{" "}
                 <strong className="font-semibold text-tinta">
                   {marca.anios} años
                 </strong>{" "}
-                tejiendo por encargo desde mi taller en Motozintla, Chiapas.
-                Empecé haciendo figuras para regalar a mi familia y hoy tejo
-                recuerdos para personas de todo México.
+                tejiendo por encargo desde el taller en Motozintla, Chiapas. Lo
+                que empezó como figuras para regalar en familia hoy son
+                recuerdos que viajan a todo México.
               </p>
               <p>
-                No trabajo con moldes ni con máquinas. Cada figura se diseña
-                desde cero a partir de tus fotos y se teje punto por punto, con
-                el tiempo que haga falta para que la sonrisa, el peinado o esa
-                manchita en el ojito queden exactamente como los recuerdas.
+                No trabajamos con moldes ni con máquinas. Cada amigurumi se
+                diseña desde cero a partir de tus fotos y se teje punto por
+                punto, con el tiempo que haga falta para que la sonrisa, el
+                peinado o esa manchita en el ojito queden exactamente como los
+                recuerdas.
               </p>
               <p className="font-display text-[1.1875rem] italic leading-[1.55] text-tinta">
-                Más que un muñeco, creo recuerdos que se abrazan.
+                Más que un amigurumi, tejemos recuerdos que se abrazan.
               </p>
             </div>
           </Revelar>
@@ -191,7 +179,7 @@ export function Sobre() {
                 href={marca.whatsappUrl}
                 icono={<Flecha className="h-[1.05rem] w-[1.05rem]" />}
               >
-                Cuéntame tu idea
+                Cuéntanos tu idea
               </Boton>
             </div>
           </Revelar>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { testimonios } from "@/lib/contenido";
 import { Estrella } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
@@ -24,9 +23,9 @@ export function Testimonios() {
             <Eyebrow>Testimonios</Eyebrow>
           </Revelar>
           <TituloRevelado
-            texto="Lo que dicen quienes ya confiaron en mí"
+            texto="Lo que dicen quienes ya nos confiaron su idea"
             desde={0.05}
-            acentoDesde={5}
+            acentoDesde={4}
             claseAcento="text-gradiente italic"
             className="mt-6 font-display text-[clamp(2.25rem,5.2vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-tinta"
           />
@@ -40,7 +39,7 @@ export function Testimonios() {
           {testimonios.map((testimonio, i) => (
             <Hijo
               as="li"
-              key={testimonio.nombre}
+              key={testimonio.tipo}
               className={i % 2 === 1 ? "lg:mt-10" : ""}
             >
               <figure className="vidrio group flex h-full flex-col gap-5 rounded-[var(--radius-carta)] p-7 shadow-[var(--shadow-suave)] transition-all duration-500 ease-[var(--ease-suave)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-alta)] motion-safe:animate-[flotar_var(--dur)_ease-in-out_infinite]"
@@ -65,25 +64,12 @@ export function Testimonios() {
                   “{testimonio.texto}”
                 </blockquote>
 
-                <figcaption className="flex items-center gap-3.5 border-t border-rosa-200/60 pt-5">
-                  <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-white shadow-[var(--shadow-suave)]">
-                    <Image
-                      src={`/galeria/${testimonio.pieza}.webp`}
-                      alt=""
-                      fill
-                      loading="lazy"
-                      sizes="44px"
-                      className="object-cover"
-                    />
-                  </span>
-                  <span>
-                    <span className="block font-display text-[1rem] leading-tight text-tinta">
-                      {testimonio.nombre}
-                    </span>
-                    <span className="mt-0.5 block text-[0.75rem] leading-tight text-tinta-50">
-                      {testimonio.lugar}
-                    </span>
-                  </span>
+                <figcaption className="flex items-center gap-2.5 border-t border-rosa-200/60 pt-5">
+                  <span
+                    aria-hidden
+                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-rosa-300"
+                  />
+                  <span className="eyebrow text-tinta-50">{testimonio.tipo}</span>
                 </figcaption>
               </figure>
             </Hijo>

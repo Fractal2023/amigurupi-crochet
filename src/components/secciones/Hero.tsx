@@ -268,7 +268,7 @@ export function Hero() {
             >
               <Image
                 src="/marca/mascota.png"
-                alt="Muñeca de crochet de Amigurupi abrazando a su conejito tejido"
+                alt="Amigurumi de la mascota de Amigurupi abrazando a su conejito tejido"
                 fill
                 priority
                 quality={88}

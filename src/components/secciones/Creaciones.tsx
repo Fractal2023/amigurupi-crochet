@@ -49,7 +49,7 @@ export function Creaciones() {
   return (
     <section
       id="creaciones"
-      className="grano relative scroll-mt-24 overflow-hidden bg-tinta py-24 text-white sm:py-32 lg:py-40"
+      className="grano relative scroll-mt-24 overflow-hidden bg-[linear-gradient(170deg,var(--color-rosa-100)_0%,var(--color-blush)_45%,var(--color-rosa-100)_100%)] py-24 text-tinta sm:py-32 lg:py-40"
       onMouseEnter={() => setPausado(true)}
       onMouseLeave={() => setPausado(false)}
       onFocusCapture={() => setPausado(true)}
@@ -57,20 +57,20 @@ export function Creaciones() {
     >
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(90%_60%_at_20%_0%,rgba(249,138,191,0.28),transparent_62%),radial-gradient(80%_60%_at_92%_96%,rgba(255,154,92,0.2),transparent_60%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(90%_60%_at_20%_0%,rgba(249,138,191,0.32),transparent_62%),radial-gradient(80%_60%_at_92%_96%,rgba(255,154,92,0.18),transparent_60%)]"
       />
 
       <div className="mx-auto w-full max-w-[88rem] px-5 sm:px-8">
         <header className="max-w-[40rem]">
           <Revelar>
-            <Eyebrow tono="text-rosa-300">Creaciones destacadas</Eyebrow>
+            <Eyebrow>Creaciones destacadas</Eyebrow>
           </Revelar>
           <TituloRevelado
             texto="Piezas que se convirtieron en recuerdo"
             desde={0.05}
             acentoDesde={3}
-            claseAcento="italic text-rosa-300"
-            className="mt-6 font-display text-[clamp(2.25rem,5.2vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-white"
+            claseAcento="text-gradiente italic"
+            className="mt-6 font-display text-[clamp(2.25rem,5.2vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-tinta"
           />
         </header>
 
@@ -112,22 +112,22 @@ export function Creaciones() {
                   />
                   <div
                     aria-hidden
-                    className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(59,15,43,0.5))] lg:bg-[linear-gradient(90deg,transparent_55%,rgba(59,15,43,0.45))]"
+                    className="absolute inset-0 bg-[linear-gradient(180deg,transparent_62%,rgba(59,15,43,0.18))]"
                   />
                 </div>
 
-                <div className="flex flex-col justify-center gap-6 bg-white/[0.06] p-8 backdrop-blur-md sm:p-12 lg:p-14">
-                  <p className="eyebrow text-rosa-300">{actual.titulo}</p>
-                  <p className="font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-medium italic leading-[1.14] tracking-[-0.02em] text-white">
+                <div className="flex flex-col justify-center gap-6 border-t border-white/70 bg-white/75 p-8 backdrop-blur-md sm:p-12 lg:border-l lg:border-t-0 lg:p-14">
+                  <p className="eyebrow text-rosa-600">{actual.titulo}</p>
+                  <p className="font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-medium italic leading-[1.14] tracking-[-0.02em] text-tinta">
                     “{actual.frase}”
                   </p>
-                  <p className="text-[0.9375rem] leading-[1.72] text-white/72 sm:text-[1rem]">
+                  <p className="text-[0.9375rem] leading-[1.72] text-tinta-70 sm:text-[1rem]">
                     {actual.texto}
                   </p>
                   <div className="pt-1">
                     <Boton
                       href={marca.whatsappUrl}
-                      variante="fantasma"
+                      variante="primario"
                       icono={<Flecha className="h-[1.05rem] w-[1.05rem]" />}
                     >
                       Quiero uno así
@@ -154,8 +154,8 @@ export function Creaciones() {
                   <span
                     className={`block h-[3px] rounded-full transition-all duration-500 ease-[var(--ease-suave)] ${
                       i === indice
-                        ? "w-14 bg-rosa-300"
-                        : "w-7 bg-white/25 group-hover:bg-white/50"
+                        ? "w-14 bg-rosa-500"
+                        : "w-7 bg-rosa-300/60 group-hover:bg-rosa-400"
                     }`}
                   />
                 </button>
@@ -167,7 +167,7 @@ export function Creaciones() {
                 type="button"
                 onClick={() => ir(-1)}
                 aria-label="Creación anterior"
-                className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/25 text-white transition-all duration-300 hover:border-white/60 hover:bg-white/10"
+                className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-rosa-300/70 bg-white/60 text-tinta transition-all duration-300 hover:border-rosa-400 hover:bg-white"
               >
                 <Flecha className="h-[1.1rem] w-[1.1rem] rotate-180" />
               </button>
@@ -175,7 +175,7 @@ export function Creaciones() {
                 type="button"
                 onClick={() => ir(1)}
                 aria-label="Creación siguiente"
-                className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/25 text-white transition-all duration-300 hover:border-white/60 hover:bg-white/10"
+                className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-rosa-300/70 bg-white/60 text-tinta transition-all duration-300 hover:border-rosa-400 hover:bg-white"
               >
                 <Flecha className="h-[1.1rem] w-[1.1rem]" />
               </button>

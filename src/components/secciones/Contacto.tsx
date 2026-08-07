@@ -68,7 +68,7 @@ export function Contacto() {
                   <span className="italic text-white/85">juntas.</span>
                 </h2>
                 <p className="mt-5 max-w-[36rem] text-[1.0625rem] leading-[1.68] text-white/92">
-                  Mándame una foto y cuéntame qué imaginas. Te respondo con una
+                  Mándanos una foto y cuéntanos qué imaginas. Te respondemos con una
                   propuesta, precio y tiempo de entrega, sin compromiso.
                 </p>
                 <div className="mt-9 flex flex-wrap gap-3">
@@ -77,7 +77,7 @@ export function Contacto() {
                     variante="claro"
                     icono={<Flecha className="h-[1.05rem] w-[1.05rem]" />}
                   >
-                    Escríbeme por WhatsApp
+                    Escríbenos por WhatsApp
                   </Boton>
                   <Boton
                     href={marca.instagram}
@@ -111,7 +111,7 @@ export function Contacto() {
             <Eyebrow>Contacto</Eyebrow>
           </Revelar>
           <TituloRevelado
-            texto="Dónde encontrarme"
+            texto="Dónde encontrarnos"
             desde={0.05}
             acentoDesde={1}
             claseAcento="text-gradiente italic"

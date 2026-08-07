@@ -34,7 +34,7 @@ export function BotonWhatsApp() {
             href={marca.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Escríbeme por WhatsApp para pedir información sobre un amigurumi personalizado"
+            aria-label="Escríbenos por WhatsApp para pedir información sobre un amigurumi personalizado"
             className="group relative flex h-14 w-14 cursor-pointer items-center justify-center rounded-full text-white shadow-[var(--shadow-flotante)] transition-transform duration-300 ease-[var(--ease-suave)] hover:scale-105 active:scale-95 motion-reduce:hover:scale-100 sm:h-[3.75rem] sm:w-[3.75rem]"
           >
             {/* Pulso de atención, detrás del botón */}
@@ -48,7 +48,7 @@ export function BotonWhatsApp() {
             <WhatsApp className="relative h-7 w-7" />
 
             <span className="pointer-events-none absolute right-[calc(100%+0.75rem)] hidden whitespace-nowrap rounded-full border border-white/70 bg-white/85 px-4 py-2 text-[0.8125rem] font-medium text-tinta opacity-0 shadow-[var(--shadow-suave)] backdrop-blur-md transition-all duration-300 ease-[var(--ease-suave)] group-hover:opacity-100 group-focus-visible:opacity-100 lg:block">
-              Escríbeme por WhatsApp
+              Escríbenos por WhatsApp
             </span>
           </Link>
         </motion.div>

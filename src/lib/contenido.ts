@@ -178,7 +178,7 @@ export const destacadas = [
     titulo: "Parejas",
     frase: "Dos figuras. Una historia que ya estaban escribiendo.",
     texto:
-      "Aniversarios, pedidas de mano, bodas. Recreo su ropa, sus accesorios y esos detalles que solo ustedes reconocen.",
+      "Aniversarios, pedidas de mano, bodas. Recreamos su ropa, sus accesorios y esos detalles que sólo ustedes reconocen.",
   },
   {
     archivo: "42",
@@ -192,7 +192,7 @@ export const destacadas = [
     titulo: "Mascotas",
     frase: "Con su manchita en el ojito, tal como es.",
     texto:
-      "Tejo a tu compañero de vida a partir de tus fotos: su pelaje, su postura, esa marca que lo hace único.",
+      "Tejemos a tu compañero de vida a partir de tus fotos: su pelaje, su postura, esa marca que lo hace único.",
   },
   {
     archivo: "62",
@@ -213,19 +213,19 @@ export const destacadas = [
 export const pasos = [
   {
     numero: "01",
-    titulo: "Cuéntame tu idea",
+    titulo: "Cuéntanos tu idea",
     texto:
-      "Me escribes por WhatsApp y me mandas fotos, referencias y esos detalles que hacen especial a la persona o mascota.",
+      "Nos escribes por WhatsApp y nos mandas fotos, referencias y esos detalles que hacen especial a la persona o mascota.",
   },
   {
     numero: "02",
-    titulo: "Diseño tu propuesta",
+    titulo: "Diseñamos tu propuesta",
     texto:
-      "Te envío un boceto con los colores, el tamaño, el precio y el tiempo estimado. Ajustamos hasta que sea justo lo que imaginabas.",
+      "Te enviamos un boceto con los colores, el tamaño, el precio y el tiempo estimado. Ajustamos hasta que sea justo lo que imaginabas.",
   },
   {
     numero: "03",
-    titulo: "Comienzo a tejer",
+    titulo: "Comenzamos a tejer",
     texto:
       "Empieza el trabajo a mano, punto por punto, con hilo de algodón de calidad y relleno hipoalergénico.",
   },
@@ -233,7 +233,7 @@ export const pasos = [
     numero: "04",
     titulo: "Revisamos detalles",
     texto:
-      "Te comparto avances en fotos. Si algo no coincide con lo que tenías en mente, lo corrijo antes de terminar.",
+      "Te compartimos avances en fotos. Si algo no coincide con lo que tenías en mente, lo corregimos antes de terminar.",
   },
   {
     numero: "05",
@@ -265,7 +265,7 @@ export const valores = [
   {
     titulo: "Atención cercana",
     texto:
-      "Hablas directamente conmigo de principio a fin. Te comparto avances y resuelvo dudas al momento.",
+      "Hablas directamente con quien teje tu pieza, de principio a fin. Te compartimos avances y resolvemos dudas al momento.",
     icono: "chat",
   },
   {
@@ -282,61 +282,57 @@ export const valores = [
   },
 ] as const;
 
+/**
+ * Comentarios generales sobre el tipo de encargo, sin fotos ni personas
+ * concretas: son ejemplos del tipo de pedido, no reseñas verificadas.
+ */
 export const testimonios = [
   {
-    nombre: "Mariana R.",
-    lugar: "Motozintla, Chiapas",
+    tipo: "Amigurumi personalizado",
     texto:
       "Quedé enamorada del resultado, superó mis expectativas. Mil gracias por tanto amor en cada detalle.",
-    pieza: "61",
   },
   {
-    nombre: "Daniela M.",
-    lugar: "Tapachula, Chiapas",
+    tipo: "Pareja personalizada",
     texto:
       "El mejor regalo que pude darle a mi novio. Le encantó su versión en amigurumi, ¡está idéntico!",
-    pieza: "55",
   },
   {
-    nombre: "Valeria S.",
-    lugar: "Comitán, Chiapas",
+    tipo: "Mascota tejida",
     texto:
       "Mi perrita quedó perfecta, hasta su manchita en el ojito tejida con tanto amor. Volveré a pedir.",
-    pieza: "63",
   },
   {
-    nombre: "Andrea L.",
-    lugar: "Tuxtla Gutiérrez, Chiapas",
+    tipo: "Regalo de graduación",
     texto:
       "Pedí el amigurumi de graduación de mi hermana y lloró al abrirlo. La calidad del tejido es impecable.",
-    pieza: "42",
   },
 ];
 
 export const preguntas = [
   {
     p: "¿Cuánto tarda en estar listo mi amigurumi?",
-    r: "Una figura personalizada tarda entre 1 y 3 semanas, según el detalle y la cantidad de piezas. En temporadas altas (graduaciones, 14 de febrero, 10 de mayo y diciembre) te confirmo la fecha exacta antes de apartar tu lugar. Si lo necesitas para una fecha específica, avísame desde el primer mensaje.",
+    r: "Una figura personalizada tarda entre 1 y 3 semanas, según el detalle y la cantidad de piezas. En temporadas altas (graduaciones, 14 de febrero, 10 de mayo y diciembre) te confirmamos la fecha exacta antes de apartar tu lugar. Si lo necesitas para una fecha específica, avísanos desde el primer mensaje.",
   },
   {
     p: "¿Cómo se hace un diseño personalizado?",
-    r: "Me envías fotos de la persona, mascota o personaje junto con los detalles importantes: peinado, ropa, colores favoritos, accesorios. Con eso preparo una propuesta con boceto, medidas y precio. Cuando la apruebas, comienzo a tejer.",
+    r: "Nos envías fotos de la persona, mascota o personaje junto con los detalles importantes: peinado, ropa, colores favoritos, accesorios. Con eso preparamos una propuesta con boceto, medidas y precio. Cuando la apruebas, comenzamos a tejer.",
   },
   {
     p: "¿Cuáles son las formas de pago?",
-    r: "Se aparta con el 50% del total y el resto se cubre al terminar la pieza, antes del envío. Acepto transferencia bancaria, depósito y pago en efectivo si estás en Motozintla.",
+    r: "Se aparta con el 50% del total y el resto se cubre al terminar la pieza, antes del envío. Aceptamos transferencia bancaria, depósito y pago en efectivo si estás en Motozintla.",
   },
   {
     p: "¿Hacen envíos a todo México?",
-    r: "Sí. Envío a toda la República por paquetería con número de guía para que puedas rastrear tu pedido. El costo depende del destino y del tamaño de la caja. En Motozintla puedes recoger directamente o coordinamos entrega local.",
+    r: "Sí. Enviamos a toda la República por paquetería con número de guía para que puedas rastrear tu pedido. El costo depende del destino y del tamaño de la caja. En Motozintla puedes recoger directamente o coordinamos entrega local.",
   },
   {
     p: "¿Puedo pedir cambios durante el proceso?",
-    r: "Claro. Te comparto fotos de los avances y ahí podemos ajustar colores, accesorios o detalles. Los cambios de fondo (cambiar por completo el personaje o el tamaño) sí pueden modificar el precio y el tiempo de entrega.",
+    r: "Claro. Te compartimos fotos de los avances y ahí podemos ajustar colores, accesorios o detalles. Los cambios de fondo (cambiar por completo el personaje o el tamaño) sí pueden modificar el precio y el tiempo de entrega.",
   },
   {
-    p: "¿Qué materiales usas?",
-    r: "Hilo de algodón y chenille de buena calidad, relleno siliconado hipoalergénico y ojos de seguridad. Para figuras destinadas a menores de 3 años tejo los ojos y detalles con hilo, sin piezas pequeñas.",
+    p: "¿Qué materiales usan?",
+    r: "Hilo de algodón y chenille de buena calidad, relleno siliconado hipoalergénico y ojos de seguridad. Para figuras destinadas a menores de 3 años tejemos los ojos y detalles con hilo, sin piezas pequeñas.",
   },
   {
     p: "¿Cómo cuido mi amigurumi?",

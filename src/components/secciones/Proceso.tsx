@@ -116,7 +116,7 @@ export function Proceso() {
               Empezar mi encargo
             </Boton>
             <p className="text-[0.875rem] text-tinta-50">
-              Respondo personalmente, normalmente el mismo día.
+              Respondemos personalmente, normalmente el mismo día.
             </p>
           </div>
         </Revelar>

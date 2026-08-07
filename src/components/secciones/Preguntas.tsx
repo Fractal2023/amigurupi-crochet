@@ -22,7 +22,7 @@ export function Preguntas() {
             <Eyebrow>Preguntas frecuentes</Eyebrow>
           </Revelar>
           <TituloRevelado
-            texto="Todo lo que sueles preguntarme"
+            texto="Todo lo que suelen preguntarnos"
             desde={0.05}
             acentoDesde={3}
             claseAcento="text-gradiente italic"
@@ -30,8 +30,8 @@ export function Preguntas() {
           />
           <Revelar retraso={0.1}>
             <p className="mt-6 max-w-[26rem] text-[1.0625rem] leading-[1.7] text-tinta-70">
-              ¿Te quedó una duda que no está aquí? Escríbeme y con gusto te la
-              resuelvo antes de que hagas cualquier pago.
+              ¿Te quedó una duda que no está aquí? Escríbenos y con gusto te la
+              resolvemos antes de que hagas cualquier pago.
             </p>
             <div className="mt-8">
               <Boton
