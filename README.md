@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Amigurupi Crochet
 
-## Getting Started
-
-First, run the development server:
+Sitio de una sola página para **Amigurupi Crochet** (Motozintla, Chiapas).
+Next.js 16 · React 19 · Tailwind v4 · Framer Motion · Lenis.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # desarrollo
+npm run build   # build de producción (todo estático)
+npm start       # servir el build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Marca
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+La paleta está tomada píxel a píxel de `Paleta de Colores.jpg` y vive en
+`src/app/globals.css` como tokens de Tailwind:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Token | Valor | Uso |
+|---|---|---|
+| `rosa` | `#f98abf` | color principal de marca |
+| `coral` | `#ff9a5c` | segundo color del degradado |
+| `sol` | `#f0d732` | hilo de acento |
+| `blush` | `#fef1f8` | fondo de secciones alternas |
+| `menta` / `cielo` / `lila` | `#9aebe5` / `#8cd7f6` / `#bea3f0` | hilos de acento |
 
-## Learn More
+Sobre esa base se derivan la rampa `rosa-50…700`, los lienzos cálidos
+(`lienzo`, `velo`) y la tinta ciruela (`tinta`, `tinta-70`, `tinta-50`).
+Los tres tonos de tinta pasan contraste AA (≥ 4.5:1) sobre `lienzo`.
 
-To learn more about Next.js, take a look at the following resources:
+Tipografía: **Fraunces** (display, con ejes `SOFT`/`WONK` para el aire hecho a
+mano) e **Inter** (texto).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## La mascota
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`public/marca/mascota.png` se extrae de la ilustración de referencia con
+`scripts/build-assets.mjs`. El script **sólo borra fondo**: recorta, hace un
+relleno por inundación desde el borde con una paleta de referencia limitada a
+tonos pálidos y fríos (el rosa/marfil del fondo), descarta las formas sueltas
+que no son la mascota y reescala de forma uniforme con Lanczos.
 
-## Deploy on Vercel
+Nunca se retocan colores, proporciones ni rasgos. Si hay que rehacerla:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+node scripts/build-assets.mjs
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+El mismo script convierte la galería a WebP y copia el video del hero.
+Las rutas de origen apuntan a la carpeta de marca `Amigurupi Web`.
+
+## Contenido
+
+Todo el texto editable (servicios, pasos, preguntas, testimonios, fichas de
+galería) está en `src/lib/contenido.ts`. No hace falta tocar componentes para
+cambiar copys, precios de proceso, categorías o datos de contacto.
+
+Para añadir una foto a la galería: colócala en la carpeta de marca, corre el
+script y añade su entrada en `piezas`. `tramo: "alto"` la hace ocupar una
+casilla más alta dentro del mosaico.
+
+## Accesibilidad y movimiento
+
+- `prefers-reduced-motion` desactiva Lenis, pausa el video del hero y anula
+  las animaciones de Framer y CSS.
+- Navegación por teclado completa en el visor de la galería (Esc, ← →) y en
+  el carrusel de creaciones.
+- Enlace de salto al contenido, jerarquía de encabezados sin saltos, `alt` en
+  todas las imágenes y áreas táctiles de 44px como mínimo.
+
+## SEO
+
+Metadatos, Open Graph, `sitemap.xml`, `robots.txt` y datos estructurados
+(`LocalBusiness` + `FAQPage`) se generan desde `src/app/`. Antes de publicar,
+cambia la constante `SITIO` en `layout.tsx`, `sitemap.ts` y `robots.ts` por el
+dominio real.

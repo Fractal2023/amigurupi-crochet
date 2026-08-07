@@ -1,26 +1,218 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Amigurupi Crochet — design tokens
+   Palette values are sampled directly from the brand's
+   "Paleta de Colores" artwork. Nothing here is invented.
+   ============================================================ */
+
+@theme {
+  /* Brand palette — the seven official yarns */
+  --color-rosa: #f98abf;
+  --color-coral: #ff9a5c;
+  --color-sol: #f0d732;
+  --color-blush: #fef1f8;
+  --color-menta: #9aebe5;
+  --color-cielo: #8cd7f6;
+  --color-lila: #bea3f0;
+
+  /* Rose ramp, derived from --color-rosa for depth and states */
+  --color-rosa-50: #fff5fa;
+  --color-rosa-100: #ffe4f1;
+  --color-rosa-200: #fdc9e1;
+  --color-rosa-300: #f98abf;
+  --color-rosa-400: #ef62a3;
+  --color-rosa-500: #de3d86;
+  --color-rosa-600: #c02168;
+  --color-rosa-700: #97164f;
+
+  /* Surfaces — warm ivory, never clinical white */
+  --color-lienzo: #fffbf8;
+  --color-lienzo-2: #fff6f2;
+  --color-velo: #fef1f8;
+
+  /* Ink — deep plum reads warmer and more couture than black */
+  /* Los tres tonos de texto pasan AA (>=4.5:1) sobre --color-lienzo.
+     tinta-50 se oscureció desde #8d6d7d, que se quedaba en 4.45:1. */
+  --color-tinta: #3b0f2b;
+  --color-tinta-70: #6b4459;
+  --color-tinta-50: #7a5768;
+  --color-hilo: #f4dfe9;
+
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Editorial type scale */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.22em;
+
+  /* Pink-tuned elevation: shadows carry the brand hue, never grey */
+  --shadow-suave: 0 2px 8px -2px rgb(151 22 79 / 0.06),
+    0 12px 28px -12px rgb(151 22 79 / 0.12);
+  --shadow-alta: 0 4px 12px -4px rgb(151 22 79 / 0.08),
+    0 30px 60px -30px rgb(151 22 79 / 0.24);
+  --shadow-flotante: 0 10px 20px -8px rgb(151 22 79 / 0.16),
+    0 40px 80px -32px rgb(151 22 79 / 0.32);
+
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-tejido: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --radius-carta: 1.75rem;
+  --radius-pieza: 2.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* One deliberate look: a boutique commits to its light, warm canvas. */
+    color-scheme: light;
+    scroll-behavior: smooth;
+    --nav-h: 4.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      scroll-behavior: auto;
+    }
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-lienzo);
+    color: var(--color-tinta);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--color-rosa-200);
+    color: var(--color-rosa-700);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rosa-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Honour the user's motion preference across every animation layer:
+     GSAP/Framer read this too via the useReducedMotion hooks. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Eyebrow label — letterspaced caps over a single yarn dot */
+  .eyebrow {
+    font-size: var(--text-eyebrow);
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Glass surface used by the navbar, testimonial cards and lightbox chrome */
+  .vidrio {
+    background-color: rgb(255 251 248 / 0.72);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgb(255 255 255 / 0.7);
+  }
+
+  .vidrio-oscuro {
+    background-color: rgb(59 15 43 / 0.28);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid rgb(255 255 255 / 0.22);
+  }
+
+  /* Fine paper grain: keeps large pink gradients from banding and gives
+     the whole page a printed, tactile quality. */
+  .grano::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.11'/%3E%3C/svg%3E");
+  }
+}
+
+@utility text-gradiente {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-rosa-500),
+    var(--color-rosa-300) 55%,
+    var(--color-coral)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+/* Marquee for the trust strip */
+@keyframes desliz {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Ambient float used by hero petals and the mascot */
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--giro, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) rotate(calc(var(--giro, 0deg) + 4deg));
+  }
+}
+
+@keyframes brillo {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+@keyframes latido {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
 }
