@@ -222,22 +222,34 @@
     }
   }
 
-  /* Círculo translúcido para los números del proceso y los iconos de
-     "por qué elegirnos": vidrio pastel con canto de luz, no una chapa. */
-  .circulo-hilo {
-    background-image: linear-gradient(
-      150deg,
-      rgb(255 255 255 / 0.94) 0%,
-      rgb(var(--hilo) / 0.3) 52%,
-      rgb(var(--hilo) / 0.58) 100%
-    );
+  /* Puntada de costura siguiendo el contorno, como una etiqueta de tela
+     cosida a mano. Es lo que aparta a la tarjeta de una caja de software. */
+  .puntada-borde::before {
+    content: "";
+    position: absolute;
+    inset: 0.6875rem;
+    border: 1.5px dashed rgb(var(--hilo) / 0.5);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Botón de ovillo: el número o el icono sobre una espiral tejida.
+     Nada de vidrio ni de chapa metálica. */
+  .boton-ovillo {
+    background-image:
+      radial-gradient(80% 70% at 30% 22%, rgb(255 255 255 / 0.88), transparent 62%),
+      linear-gradient(
+        150deg,
+        rgb(var(--hilo) / 0.28) 0%,
+        rgb(var(--hilo) / 0.5) 60%,
+        rgb(var(--hilo) / 0.66) 100%
+      ),
+      linear-gradient(0deg, rgb(255 251 248 / 0.9), rgb(255 251 248 / 0.9));
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.95),
-      inset 0 0 0 1px rgb(255 255 255 / 0.5),
-      0 12px 26px -12px rgb(var(--hilo) / 0.75),
+      inset 0 1px 0 rgb(255 255 255 / 0.9),
+      inset 0 0 0 1.5px rgb(var(--hilo) / 0.4),
+      0 12px 24px -12px rgb(var(--hilo) / 0.8),
       0 2px 6px -2px rgb(151 22 79 / 0.14);
-    /* El desenfoque de fondo se aplica con la utilidad `backdrop-blur-*`:
-       declarado aquí, Tailwind lo descarta al no emitir sus variables. */
     transition:
       transform 420ms var(--ease-suave),
       box-shadow 420ms var(--ease-suave);

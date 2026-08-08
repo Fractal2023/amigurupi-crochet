@@ -1,29 +1,32 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { marca, pasos } from "@/lib/contenido";
 import { hilosProceso } from "@/lib/hilos";
 import { Boton } from "../ui/Boton";
 import { Flecha } from "../ui/Icono";
+import { Bucle, Chispita, CorazonLleno, Espiral, Flor, Puntada } from "../ui/Adornos";
 import { Eyebrow } from "../ui/Puntada";
 import { Revelar, TituloRevelado } from "../ui/Movimiento";
 import { Corazones } from "../Corazones";
+import { HiloTejido } from "./HiloTejido";
+
+/**
+ * Cada paso tiene su propia silueta y su propio adorno, para que ninguna
+ * tarjeta se lea como copia de la anterior. Los radios son asimétricos a
+ * propósito: recortes de papel, no rectángulos.
+ */
+const siluetas = [
+  { radio: "2.75rem 1.25rem 2.5rem 1.5rem", giro: -0.7, Adorno: Flor },
+  { radio: "1.25rem 2.75rem 1.5rem 2.5rem", giro: 0.6, Adorno: Bucle },
+  { radio: "2.5rem 1.5rem 1.25rem 2.75rem", giro: -0.5, Adorno: Puntada },
+  { radio: "1.5rem 2.5rem 2.75rem 1.25rem", giro: 0.7, Adorno: CorazonLleno },
+  { radio: "2.75rem 2rem 1.5rem 2.25rem", giro: -0.6, Adorno: Chispita },
+];
 
 export function Proceso() {
   const pista = useRef<HTMLOListElement>(null);
-  const quieto = useReducedMotion();
-
-  // El hilo se teje conforme la lista atraviesa la pantalla.
-  const { scrollYProgress } = useScroll({
-    target: pista,
-    offset: ["start 72%", "end 62%"],
-  });
-  const avance = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 24,
-    restDelta: 0.001,
-  });
 
   return (
     <section
@@ -62,45 +65,30 @@ export function Proceso() {
           </Revelar>
         </header>
 
-        <ol ref={pista} className="relative mt-16 sm:mt-20 lg:mt-24">
-          {/* Hilo guía. La base se desvanece por los extremos en vez de
-              cortarse en seco, y el avance recorre la paleta completa con
-              un halo suave, para que no parezca una barra de progreso. */}
-          <div
-            aria-hidden
-            className="absolute left-[2.25rem] top-2 h-[calc(100%-4rem)] w-[3px] -translate-x-1/2 rounded-full bg-[linear-gradient(180deg,transparent,rgb(249_138_191/0.3)_9%,rgb(249_138_191/0.3)_91%,transparent)] lg:left-1/2"
-          >
-            <motion.div
-              className="h-full w-full origin-top rounded-full bg-[linear-gradient(180deg,var(--color-rosa),var(--color-coral)_28%,var(--color-sol)_50%,var(--color-menta)_72%,var(--color-lila))] shadow-[0_0_14px_-1px_rgb(249_138_191/0.7)]"
-              style={quieto ? { scaleY: 1 } : { scaleY: avance }}
-            />
-          </div>
+        {/* `isolate` mantiene el hilo (-z-10) dentro de esta lista: sin él
+            acabaría detrás del fondo de la sección. El margen superior deja
+            sitio al ovillo del que sale. */}
+        <ol
+          ref={pista}
+          className="relative isolate mt-28 pt-20 sm:mt-32 lg:mt-36 lg:pt-24"
+        >
+          <HiloTejido contenedor={pista} ancla="[data-ancla]" />
 
           {pasos.map((paso, i) => {
             const derecha = i % 2 === 1;
+            const { radio, giro, Adorno } = siluetas[i];
             return (
               <li
                 key={paso.numero}
-                className="relative grid grid-cols-[4.5rem_1fr] items-center gap-x-4 pb-14 last:pb-0 sm:gap-x-5 lg:grid-cols-[1fr_5.5rem_1fr] lg:gap-x-0 lg:pb-20"
+                className="relative grid grid-cols-[4.5rem_1fr] items-center gap-x-4 pb-16 last:pb-0 sm:gap-x-5 lg:grid-cols-[1fr_5.5rem_1fr] lg:gap-x-0 lg:pb-24"
               >
-                {/* Número: pieza editorial, no una insignia. Va sobre la
-                    tarjeta (z-10) y ésta se mete bajo él con márgenes
-                    negativos, así el círculo queda medio fuera del canto. */}
-                <div className="relative z-10 flex justify-center lg:col-start-2 lg:row-start-1">
-                  <motion.span
-                    initial={{ scale: quieto ? 1 : 0.55, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true, margin: "-25% 0px -25% 0px" }}
-                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ "--hilo": hilosProceso[i].rgb } as React.CSSProperties}
-                    className="circulo-hilo grid h-[4.5rem] w-[4.5rem] backdrop-blur-[6px] backdrop-saturate-150 place-items-center rounded-full font-display text-[1.625rem] leading-none tracking-[-0.02em] text-tinta/80 lg:h-[5.5rem] lg:w-[5.5rem] lg:text-[2rem]"
-                  >
-                    {paso.numero}
-                  </motion.span>
+                <div
+                  data-ancla
+                  className="relative z-10 flex justify-center lg:col-start-2 lg:row-start-1"
+                >
+                  <NumeroOvillo numero={paso.numero} hilo={hilosProceso[i].rgb} />
                 </div>
 
-                {/* La tarjeta alterna de lado en escritorio; en móvil siempre va
-                    a la derecha del hilo. */}
                 <div
                   className={
                     derecha
@@ -108,7 +96,14 @@ export function Proceso() {
                       : "lg:col-start-1 lg:row-start-1"
                   }
                 >
-                  <Tarjeta paso={paso} indice={i} alineado={derecha ? "izquierda" : "derecha"} />
+                  <Tarjeta
+                    paso={paso}
+                    hilo={hilosProceso[i].rgb}
+                    radio={radio}
+                    giro={giro}
+                    Adorno={Adorno}
+                    alineado={derecha ? "izquierda" : "derecha"}
+                  />
                 </div>
               </li>
             );
@@ -116,7 +111,7 @@ export function Proceso() {
         </ol>
 
         <Revelar retraso={0.1}>
-          <div className="mt-14 flex flex-col items-center gap-4 text-center">
+          <div className="mt-16 flex flex-col items-center gap-4 text-center">
             <Boton
               href={marca.whatsappUrl}
               icono={<Flecha className="h-[1.05rem] w-[1.05rem]" />}
@@ -133,36 +128,78 @@ export function Proceso() {
   );
 }
 
+/** Número sobre un botón de ovillo, con la espiral del tejido detrás. */
+function NumeroOvillo({ numero, hilo }: { numero: string; hilo: string }) {
+  const quieto = useReducedMotion();
+
+  return (
+    <motion.span
+      initial={{ scale: quieto ? 1 : 0.55, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true, margin: "-25% 0px -25% 0px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      style={{ "--hilo": hilo } as React.CSSProperties}
+      className="boton-ovillo relative grid h-[4.5rem] w-[4.5rem] place-items-center overflow-hidden rounded-full lg:h-[5.5rem] lg:w-[5.5rem]"
+    >
+      <Espiral className="absolute inset-0 h-full w-full text-[rgb(var(--hilo))] opacity-25" />
+      <span className="relative font-display text-[1.625rem] leading-none tracking-[-0.02em] text-tinta/80 lg:text-[2rem]">
+        {numero}
+      </span>
+    </motion.span>
+  );
+}
+
 function Tarjeta({
   paso,
-  indice,
+  hilo,
+  radio,
+  giro,
+  Adorno,
   alineado,
 }: {
   paso: (typeof pasos)[number];
-  indice: number;
+  hilo: string;
+  radio: string;
+  giro: number;
+  Adorno: (p: React.SVGProps<SVGSVGElement>) => React.JSX.Element;
   alineado: "izquierda" | "derecha";
 }) {
+  const quieto = useReducedMotion();
   const derecha = alineado === "derecha";
 
   return (
-    <Revelar y={22}>
-      <article
-        style={{ "--hilo": hilosProceso[indice].rgb } as React.CSSProperties}
-        // El margen negativo mete la tarjeta bajo el círculo del número; el
-        // padding del lado que solapa se agranda para que el texto respire.
-        className={`tarjeta-lujo grano -ml-8 rounded-[2rem] py-8 pl-14 pr-7 sm:py-10 sm:pl-16 sm:pr-9 ${
-          derecha
-            ? "lg:ml-0 lg:-mr-8 lg:pl-10 lg:pr-16 lg:text-right"
-            : "lg:pl-16 lg:pr-10"
+    <motion.article
+      initial={{ opacity: 0, y: quieto ? 0 : 26, scale: quieto ? 1 : 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-12% 0px -10% 0px" }}
+      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+      style={
+        {
+          "--hilo": hilo,
+          borderRadius: radio,
+          // Un grado escaso de inclinación: la etiqueta parece colocada a
+          // mano, no encajada por una retícula.
+          rotate: quieto ? 0 : `${giro}deg`,
+        } as React.CSSProperties
+      }
+      className={`tarjeta-lujo puntada-borde grano -ml-8 py-9 pl-16 pr-8 sm:py-11 sm:pl-[4.75rem] sm:pr-10 ${
+        derecha
+          ? "lg:ml-0 lg:-mr-8 lg:pl-11 lg:pr-[4.75rem] lg:text-right"
+          : "lg:pl-[4.75rem] lg:pr-11"
+      }`}
+    >
+      <h3 className="font-display text-[1.375rem] font-medium leading-[1.15] tracking-[-0.02em] text-tinta sm:text-[1.625rem]">
+        {paso.titulo}
+      </h3>
+      <p className="mt-4 max-w-[34ch] text-[0.9375rem] leading-[1.72] text-tinta-70 sm:text-[1rem] lg:max-w-none">
+        {paso.texto}
+      </p>
+
+      <Adorno
+        className={`pointer-events-none absolute bottom-5 h-9 w-9 text-[rgb(var(--hilo))] opacity-45 ${
+          derecha ? "left-6 lg:left-9" : "right-6"
         }`}
-      >
-        <h3 className="font-display text-[1.375rem] font-medium leading-[1.15] tracking-[-0.02em] text-tinta sm:text-[1.625rem]">
-          {paso.titulo}
-        </h3>
-        <p className="mt-4 max-w-[34ch] text-[0.9375rem] leading-[1.72] text-tinta-70 sm:text-[1rem] lg:max-w-none">
-          {paso.texto}
-        </p>
-      </article>
-    </Revelar>
+      />
+    </motion.article>
   );
 }
