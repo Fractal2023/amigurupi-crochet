@@ -8,6 +8,7 @@ import { Boton } from "../ui/Boton";
 import { Flecha } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
 import { Revelar, TituloRevelado } from "../ui/Movimiento";
+import { Corazones } from "../Corazones";
 
 const promesas = [
   {
@@ -80,6 +81,7 @@ export function Sobre() {
       ref={seccion}
       className="relative scroll-mt-24 overflow-hidden bg-lienzo py-24 sm:py-32 lg:py-40"
     >
+      <Corazones patron={0} />
       <div
         aria-hidden
         className="absolute -left-40 top-1/4 -z-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(249,138,191,0.16),transparent_66%)] blur-2xl"

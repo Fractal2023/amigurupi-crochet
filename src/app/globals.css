@@ -205,6 +205,33 @@
   }
 }
 
+/* Resplandor que late suavemente detrás de una tarjeta al pasar el cursor */
+@keyframes resplandor {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Deriva lenta de los corazones de fondo: sube, se mece y vuelve */
+@keyframes deriva {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--giro, 0deg));
+  }
+  33% {
+    transform: translate3d(10px, -26px, 0) rotate(calc(var(--giro, 0deg) + 6deg));
+  }
+  66% {
+    transform: translate3d(-8px, -12px, 0) rotate(calc(var(--giro, 0deg) - 5deg));
+  }
+}
+
 @keyframes latido {
   0% {
     transform: scale(1);

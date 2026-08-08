@@ -10,16 +10,16 @@ import { HilosDeMarca } from "../ui/Puntada";
 
 const SUAVE = [0.22, 1, 0.36, 1] as const;
 
-/** Corazones y destellos que flotan sobre el video. Puramente decorativos. */
+/**
+ * Destellos sobre el video. Los corazones ya no viven aquí: los pone
+ * `<Corazones />` para toda la página, así no se duplican en el hero.
+ */
 const adornos = [
-  { x: "8%", y: "22%", s: 26, d: 0, t: 7.5, tipo: "corazon", giro: -12 },
-  { x: "17%", y: "72%", s: 18, d: 1.4, t: 9, tipo: "corazon", giro: 8 },
-  { x: "42%", y: "12%", s: 14, d: 2.2, t: 8, tipo: "destello", giro: 0 },
-  { x: "68%", y: "18%", s: 22, d: 0.8, t: 10, tipo: "corazon", giro: 14 },
-  { x: "88%", y: "58%", s: 16, d: 2.8, t: 8.5, tipo: "destello", giro: 0 },
-  { x: "57%", y: "84%", s: 20, d: 1.9, t: 9.5, tipo: "corazon", giro: -8 },
-  { x: "30%", y: "44%", s: 12, d: 3.4, t: 7, tipo: "destello", giro: 0 },
-  { x: "78%", y: "36%", s: 13, d: 1.1, t: 8.2, tipo: "destello", giro: 0 },
+  { x: "42%", y: "12%", s: 14, d: 2.2, t: 8 },
+  { x: "88%", y: "58%", s: 16, d: 2.8, t: 8.5 },
+  { x: "30%", y: "44%", s: 12, d: 3.4, t: 7 },
+  { x: "78%", y: "36%", s: 13, d: 1.1, t: 8.2 },
+  { x: "62%", y: "80%", s: 15, d: 0.6, t: 9.2 },
 ];
 
 export function Hero() {
@@ -112,38 +112,25 @@ export function Hero() {
         {adornos.map((a, i) => (
           <span
             key={i}
-            // En móvil sólo quedan los adornos que no cruzan la columna de
-            // texto; el resto aparece a partir de tablet.
-            className={`absolute motion-safe:animate-[flotar_var(--dur)_ease-in-out_infinite] motion-reduce:animate-none ${
-              i < 3 ? "hidden sm:block" : ""
-            }`}
+            className="absolute motion-safe:animate-[flotar_var(--dur)_ease-in-out_infinite] motion-reduce:animate-none"
             style={
               {
                 left: a.x,
                 top: a.y,
                 "--dur": `${a.t}s`,
-                "--giro": `${a.giro}deg`,
                 animationDelay: `${a.d}s`,
               } as React.CSSProperties
             }
           >
-            {a.tipo === "corazon" ? (
-              <Corazon
-                className="text-rosa-300/70"
-                style={{ width: a.s, height: a.s }}
-                strokeWidth={1.6}
-              />
-            ) : (
-              <span
-                className="block rounded-full bg-white motion-safe:animate-[brillo_4s_ease-in-out_infinite]"
-                style={{
-                  width: a.s / 3,
-                  height: a.s / 3,
-                  animationDelay: `${a.d}s`,
-                  boxShadow: "0 0 12px 3px rgba(255,255,255,0.9)",
-                }}
-              />
-            )}
+            <span
+              className="block rounded-full bg-white motion-safe:animate-[brillo_4s_ease-in-out_infinite]"
+              style={{
+                width: a.s / 3,
+                height: a.s / 3,
+                animationDelay: `${a.d}s`,
+                boxShadow: "0 0 12px 3px rgba(255,255,255,0.9)",
+              }}
+            />
           </span>
         ))}
       </div>

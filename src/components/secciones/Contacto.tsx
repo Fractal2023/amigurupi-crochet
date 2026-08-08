@@ -7,6 +7,7 @@ import { Boton } from "../ui/Boton";
 import { Flecha, Instagram, Pin, Reloj, Sobre, WhatsApp } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
 import { Escalonado, Hijo, Revelar, TituloRevelado } from "../ui/Movimiento";
+import { Corazones } from "../Corazones";
 
 const MAPA =
   "https://www.google.com/maps?q=Calle+Central+Oriente+510-B,+Motozintla,+Chiapas,+M%C3%A9xico&output=embed";
@@ -49,6 +50,7 @@ export function Contacto() {
       id="contacto"
       className="relative scroll-mt-24 overflow-hidden bg-lienzo pb-24 pt-24 sm:pb-32 sm:pt-32 lg:pb-40 lg:pt-40"
     >
+      <Corazones patron={1} />
       {/* ---------- Llamado final con la mascota ---------- */}
       <div className="mx-auto w-full max-w-[88rem] px-5 sm:px-8">
         <Revelar>
