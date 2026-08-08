@@ -29,22 +29,28 @@ Los tres tonos de tinta pasan contraste AA (≥ 4.5:1) sobre `lienzo`.
 Tipografía: **Fraunces** (display, con ejes `SOFT`/`WONK` para el aire hecho a
 mano) e **Inter** (texto).
 
-## La mascota
+## El personaje
 
-`public/marca/mascota.png` se extrae de la ilustración de referencia con
-`scripts/build-assets.mjs`. El script **sólo borra fondo**: recorta, hace un
-relleno por inundación desde el borde con una paleta de referencia limitada a
-tonos pálidos y fríos (el rosa/marfil del fondo), descarta las formas sueltas
-que no son la mascota y reescala de forma uniforme con Lanczos.
+La ilustración oficial es `Personaje_HeroFINAL.png` en la carpeta de marca, y
+ya viene con fondo transparente. `scripts/build-assets.mjs` sólo le recorta el
+margen vacío y la escala de forma uniforme con Lanczos a `public/marca/
+personaje.png` (900×1282). Nunca se retocan colores, proporciones ni rasgos.
 
-Nunca se retocan colores, proporciones ni rasgos. Si hay que rehacerla:
+Aparece en el hero, en el llamado final de contacto y, recortada a la cara,
+como icono de la pestaña (`src/app/icon.png`, también generado por el script).
 
 ```bash
 node scripts/build-assets.mjs
 ```
 
-El mismo script convierte la galería a WebP y copia el video del hero.
-Las rutas de origen apuntan a la carpeta de marca `Amigurupi Web`.
+El mismo script convierte la galería a WebP, prepara el logo y copia el video
+del hero. Las rutas de origen apuntan a la carpeta de marca `Amigurupi Web`.
+
+> Si se reemplaza la ilustración, conviene cambiarle el nombre de archivo de
+> salida: el optimizador de imágenes de Next cachea por ruta y una imagen
+> nueva con el mismo nombre puede seguir sirviéndose vieja.
+> Recuerda actualizar también `aspect-[900/1282]` en `Hero.tsx` y
+> `Contacto.tsx` si cambian las proporciones.
 
 ## Contenido
 

@@ -89,9 +89,9 @@ export function Contacto() {
                 </div>
               </div>
 
-              <div className="relative mx-auto aspect-[269/389] w-[13rem] sm:w-[15rem] lg:w-full lg:max-w-[17rem] lg:justify-self-end">
+              <div className="relative mx-auto aspect-[900/1282] w-[13rem] sm:w-[15rem] lg:w-full lg:max-w-[17rem] lg:justify-self-end">
                 <Image
-                  src="/marca/mascota.png"
+                  src="/marca/personaje.png"
                   alt=""
                   fill
                   loading="lazy"

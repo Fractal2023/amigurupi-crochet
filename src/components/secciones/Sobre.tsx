@@ -13,17 +13,17 @@ const promesas = [
   {
     titulo: `${marca.anios} años de experiencia`,
     texto:
-      "Cientos de horas de oficio que se notan en la tensión del punto y en el acabado de cada amigurumi.",
+      "Años de oficio y de cariño por el crochet, que se sienten al tener la pieza en las manos.",
   },
   {
-    titulo: "Diseños únicos",
+    titulo: "Diseños personalizados",
     texto:
-      "Cada encargo nace de cero. No repetimos piezas ni vendemos tu diseño a nadie más.",
+      "Hacemos tu pieza a la medida a partir de tus fotos, y también tus personajes favoritos de siempre.",
   },
   {
     titulo: "Atención personalizada",
     texto:
-      "Hablas directamente con el taller. Te compartimos avances y ajustamos hasta que quede como lo imaginabas.",
+      "Tratas directamente con quien teje tu amigurumi, sin intermediarios ni vendedores de por medio.",
   },
   {
     titulo: "Materiales de calidad",

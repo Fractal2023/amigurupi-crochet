@@ -254,7 +254,7 @@ export function Hero() {
           style={quieto ? undefined : { y: yMascota }}
           className="relative z-0 mx-auto -mt-2 w-full max-w-[19rem] sm:max-w-[23rem] lg:mt-0 lg:max-w-none lg:justify-self-end"
         >
-          <div className="relative mx-auto aspect-[269/389] w-full lg:w-[clamp(20rem,30vw,27rem)]">
+          <div className="relative mx-auto aspect-[900/1282] w-full lg:w-[clamp(20rem,30vw,27rem)]">
             {/* Halo suave detrás de la mascota */}
             <div
               aria-hidden
@@ -267,8 +267,8 @@ export function Hero() {
               transition={{ duration: 1.2, delay: 0.4, ease: SUAVE }}
             >
               <Image
-                src="/marca/mascota.png"
-                alt="Amigurumi de la mascota de Amigurupi abrazando a su conejito tejido"
+                src="/marca/personaje.png"
+                alt="Personaje de Amigurupi con vestido bordado, sosteniendo un ovillo de estambre rosa y su aguja de crochet"
                 fill
                 priority
                 quality={88}
@@ -277,12 +277,14 @@ export function Hero() {
               />
             </motion.div>
 
-            {/* Nota manuscrita, anclada a la mascota */}
+            {/* Nota manuscrita. Sólo flota sobre el personaje en pantallas
+                anchas, donde hay sitio a su izquierda; en móvil se apoya
+                debajo para no taparle el vestido. */}
             <motion.figure
               initial={{ opacity: 0, y: 18, rotate: quieto ? 0 : 6 }}
               animate={{ opacity: 1, y: 0, rotate: 3.5 }}
               transition={{ duration: 1, delay: 1.05, ease: SUAVE }}
-              className="vidrio absolute -left-2 bottom-4 max-w-[13.5rem] rounded-[1.25rem] px-5 py-4 shadow-[var(--shadow-alta)] sm:-left-6 lg:-left-14 lg:bottom-12"
+              className="vidrio relative z-10 mx-auto -mt-8 max-w-[15rem] rounded-[1.25rem] px-5 py-4 shadow-[var(--shadow-alta)] sm:max-w-[16rem] lg:absolute lg:-left-16 lg:bottom-6 lg:mx-0 lg:mt-0 lg:max-w-[14rem] xl:-left-24"
             >
               <blockquote className="font-display text-[0.9375rem] italic leading-[1.5] text-tinta">
                 “Tu personaje, tu mascota, tu historia… tejido especialmente

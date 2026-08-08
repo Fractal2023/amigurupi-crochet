@@ -215,25 +215,25 @@ export const pasos = [
     numero: "01",
     titulo: "Cuéntanos tu idea",
     texto:
-      "Nos escribes por WhatsApp y nos mandas fotos, referencias y esos detalles que hacen especial a la persona o mascota.",
+      "Nos escribes por WhatsApp y nos mandas la foto de la persona, mascota o personaje, junto con los detalles que quieres que aparezcan.",
   },
   {
     numero: "02",
-    titulo: "Diseñamos tu propuesta",
+    titulo: "Recibes tu propuesta",
     texto:
-      "Te enviamos un boceto con los colores, el tamaño, el precio y el tiempo estimado. Ajustamos hasta que sea justo lo que imaginabas.",
+      "Te decimos qué se puede hacer con esa referencia, el tamaño, el precio y el tiempo estimado de entrega.",
   },
   {
     numero: "03",
-    titulo: "Comenzamos a tejer",
+    titulo: "Cerramos los detalles",
     texto:
-      "Empieza el trabajo a mano, punto por punto, con hilo de algodón de calidad y relleno hipoalergénico.",
+      "Confirmamos juntas colores, ropa y accesorios, y apartas tu lugar. Todos los ajustes se hacen en este punto, antes de empezar.",
   },
   {
     numero: "04",
-    titulo: "Revisamos detalles",
+    titulo: "Comenzamos a tejer",
     texto:
-      "Te compartimos avances en fotos. Si algo no coincide con lo que tenías en mente, lo corregimos antes de terminar.",
+      "Tu pieza se teje a mano, punto por punto, con hilo de algodón de calidad y relleno hipoalergénico. Cada figura lleva su tiempo.",
   },
   {
     numero: "05",
@@ -247,7 +247,7 @@ export const valores = [
   {
     titulo: "100% personalizado",
     texto:
-      "Nada es de catálogo. Cada pieza se diseña desde cero a partir de tus fotos y tus ideas.",
+      "Tu pieza se hace a partir de tus fotos y tus ideas, no de un catálogo.",
     icono: "chispa",
   },
   {
@@ -265,7 +265,7 @@ export const valores = [
   {
     titulo: "Atención cercana",
     texto:
-      "Hablas directamente con quien teje tu pieza, de principio a fin. Te compartimos avances y resolvemos dudas al momento.",
+      "Tratas directamente con quien teje tu pieza, de principio a fin. Sin intermediarios y sin bots.",
     icono: "chat",
   },
   {
@@ -275,9 +275,9 @@ export const valores = [
     icono: "regalo",
   },
   {
-    titulo: "Diseños exclusivos",
+    titulo: "Personajes favoritos",
     texto:
-      "Tu figura es tuya. No se replica ni se vende a nadie más con ese mismo diseño.",
+      "¿Un personaje que le encanta? También lo tejemos, con el mismo cuidado que una pieza a la medida.",
     icono: "corona",
   },
 ] as const;
@@ -316,7 +316,7 @@ export const preguntas = [
   },
   {
     p: "¿Cómo se hace un diseño personalizado?",
-    r: "Nos envías fotos de la persona, mascota o personaje junto con los detalles importantes: peinado, ropa, colores favoritos, accesorios. Con eso preparamos una propuesta con boceto, medidas y precio. Cuando la apruebas, comenzamos a tejer.",
+    r: "Nos envías fotos de la persona, mascota o personaje junto con los detalles importantes: peinado, ropa, colores favoritos, accesorios. Con esa referencia te confirmamos qué se puede lograr, el tamaño y el precio. Cuando lo apruebas y apartas tu lugar, comenzamos a tejer.",
   },
   {
     p: "¿Cuáles son las formas de pago?",
@@ -327,8 +327,8 @@ export const preguntas = [
     r: "Sí. Enviamos a toda la República por paquetería con número de guía para que puedas rastrear tu pedido. El costo depende del destino y del tamaño de la caja. En Motozintla puedes recoger directamente o coordinamos entrega local.",
   },
   {
-    p: "¿Puedo pedir cambios durante el proceso?",
-    r: "Claro. Te compartimos fotos de los avances y ahí podemos ajustar colores, accesorios o detalles. Los cambios de fondo (cambiar por completo el personaje o el tamaño) sí pueden modificar el precio y el tiempo de entrega.",
+    p: "¿Puedo pedir cambios?",
+    r: "Sí, y el mejor momento es antes de empezar a tejer: cuando revisamos la propuesta ajustamos colores, ropa, accesorios y tamaño hasta que sea lo que imaginabas. Una vez que la figura está en proceso ya no es posible modificarla, porque cada pieza se arma completa desde el primer punto. Por eso vale la pena mandarnos todas las referencias desde el principio.",
   },
   {
     p: "¿Qué materiales usan?",
