@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { marca, pasos } from "@/lib/contenido";
-import { hilo } from "@/lib/hilos";
+import { hilosProceso } from "@/lib/hilos";
 import { Boton } from "../ui/Boton";
 import { Flecha } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
@@ -63,13 +63,15 @@ export function Proceso() {
         </header>
 
         <ol ref={pista} className="relative mt-16 sm:mt-20 lg:mt-24">
-          {/* Hilo guía: recorrido completo en tenue + progreso en color */}
+          {/* Hilo guía. La base se desvanece por los extremos en vez de
+              cortarse en seco, y el avance recorre la paleta completa con
+              un halo suave, para que no parezca una barra de progreso. */}
           <div
             aria-hidden
-            className="absolute left-[1.6875rem] top-2 h-[calc(100%-4rem)] w-[2px] rounded-full bg-rosa-200/70 lg:left-1/2 lg:-translate-x-1/2"
+            className="absolute left-[2.25rem] top-2 h-[calc(100%-4rem)] w-[3px] -translate-x-1/2 rounded-full bg-[linear-gradient(180deg,transparent,rgb(249_138_191/0.3)_9%,rgb(249_138_191/0.3)_91%,transparent)] lg:left-1/2"
           >
             <motion.div
-              className="h-full w-full origin-top rounded-full bg-[linear-gradient(180deg,var(--color-rosa-400),var(--color-coral))]"
+              className="h-full w-full origin-top rounded-full bg-[linear-gradient(180deg,var(--color-rosa),var(--color-coral)_28%,var(--color-sol)_50%,var(--color-menta)_72%,var(--color-lila))] shadow-[0_0_14px_-1px_rgb(249_138_191/0.7)]"
               style={quieto ? { scaleY: 1 } : { scaleY: avance }}
             />
           </div>
@@ -79,17 +81,19 @@ export function Proceso() {
             return (
               <li
                 key={paso.numero}
-                className="relative grid grid-cols-[3.375rem_1fr] items-start gap-x-5 pb-12 last:pb-0 sm:gap-x-7 lg:grid-cols-[1fr_5rem_1fr] lg:gap-x-0 lg:pb-16"
+                className="relative grid grid-cols-[4.5rem_1fr] items-center gap-x-4 pb-14 last:pb-0 sm:gap-x-5 lg:grid-cols-[1fr_5.5rem_1fr] lg:gap-x-0 lg:pb-20"
               >
-                {/* Nodo del hilo: primera columna en móvil, central en escritorio */}
+                {/* Número: pieza editorial, no una insignia. Va sobre la
+                    tarjeta (z-10) y ésta se mete bajo él con márgenes
+                    negativos, así el círculo queda medio fuera del canto. */}
                 <div className="relative z-10 flex justify-center lg:col-start-2 lg:row-start-1">
                   <motion.span
-                    initial={{ scale: quieto ? 1 : 0.4, opacity: 0 }}
+                    initial={{ scale: quieto ? 1 : 0.55, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true, margin: "-25% 0px -25% 0px" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ "--hilo": hilo(i).rgb } as React.CSSProperties}
-                    className="grid h-14 w-14 place-items-center rounded-full border border-[rgb(var(--hilo)/0.6)] bg-[rgb(var(--hilo)/0.14)] font-display text-[1.0625rem] text-tinta shadow-[var(--shadow-alta)] backdrop-blur-sm"
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ "--hilo": hilosProceso[i].rgb } as React.CSSProperties}
+                    className="circulo-hilo grid h-[4.5rem] w-[4.5rem] backdrop-blur-[6px] backdrop-saturate-150 place-items-center rounded-full font-display text-[1.625rem] leading-none tracking-[-0.02em] text-tinta/80 lg:h-[5.5rem] lg:w-[5.5rem] lg:text-[2rem]"
                   >
                     {paso.numero}
                   </motion.span>
@@ -138,23 +142,24 @@ function Tarjeta({
   indice: number;
   alineado: "izquierda" | "derecha";
 }) {
+  const derecha = alineado === "derecha";
+
   return (
     <Revelar y={22}>
       <article
-        style={{ "--hilo": hilo(indice).rgb } as React.CSSProperties}
-        className={`group relative isolate overflow-hidden rounded-[var(--radius-carta)] border border-[rgb(var(--hilo)/0.35)] bg-[rgb(var(--hilo)/0.08)] p-6 shadow-[var(--shadow-suave)] backdrop-blur-md transition-all duration-500 ease-[var(--ease-suave)] hover:-translate-y-1 hover:border-[rgb(var(--hilo)/0.6)] hover:shadow-[0_18px_48px_-14px_rgb(var(--hilo)/0.75)] sm:p-8 ${
-          alineado === "derecha" ? "lg:mr-10 lg:text-right" : "lg:ml-10"
+        style={{ "--hilo": hilosProceso[indice].rgb } as React.CSSProperties}
+        // El margen negativo mete la tarjeta bajo el círculo del número; el
+        // padding del lado que solapa se agranda para que el texto respire.
+        className={`tarjeta-lujo grano -ml-8 rounded-[2rem] py-8 pl-14 pr-7 sm:py-10 sm:pl-16 sm:pr-9 ${
+          derecha
+            ? "lg:ml-0 lg:-mr-8 lg:pl-10 lg:pr-16 lg:text-right"
+            : "lg:pl-16 lg:pr-10"
         }`}
       >
-        {/* Resplandor al pasar el cursor, en el color del hilo del paso */}
-        <span
-          aria-hidden
-          className="absolute -inset-px -z-10 rounded-[inherit] bg-[radial-gradient(120%_90%_at_50%_0%,rgb(var(--hilo)/0.42),transparent_70%)] opacity-0 transition-opacity duration-500 ease-[var(--ease-suave)] group-hover:opacity-100 motion-safe:group-hover:animate-[resplandor_2.6s_ease-in-out_infinite]"
-        />
-        <h3 className="font-display text-[1.25rem] leading-snug text-tinta sm:text-[1.4375rem]">
+        <h3 className="font-display text-[1.375rem] font-medium leading-[1.15] tracking-[-0.02em] text-tinta sm:text-[1.625rem]">
           {paso.titulo}
         </h3>
-        <p className="mt-3 text-[0.9375rem] leading-[1.68] text-tinta-70 sm:text-[1rem]">
+        <p className="mt-4 max-w-[34ch] text-[0.9375rem] leading-[1.72] text-tinta-70 sm:text-[1rem] lg:max-w-none">
           {paso.texto}
         </p>
       </article>

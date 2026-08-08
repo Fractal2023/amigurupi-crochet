@@ -19,3 +19,15 @@ export const hilos = [
 export function hilo(i: number) {
   return hilos[i % hilos.length];
 }
+
+/**
+ * Secuencia de los cinco pasos del proceso: rosa, durazno, crema, agua y
+ * lavanda. Se salta el cielo para que la lavanda caiga en el último paso.
+ */
+export const hilosProceso = [
+  hilos[0], // rosa
+  hilos[1], // coral / durazno
+  hilos[2], // sol / crema cálida
+  hilos[3], // menta / agua
+  hilos[5], // lila / lavanda
+] as const;

@@ -28,7 +28,7 @@ export function Valores() {
         <Escalonado
           as="ul"
           paso={0.07}
-          className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {valores.map((valor, i) => {
             const Icono = iconos[valor.icono];
@@ -36,34 +36,22 @@ export function Valores() {
               <Hijo as="li" key={valor.titulo}>
                 <article
                   // --hilo lleva el color de la paleta que le toca a esta
-                  // tarjeta; el tinte se queda muy bajo para no comprometer
-                  // el contraste del texto.
+                  // tarjeta; el relleno en degradado y el canto translúcido
+                  // los pone la clase .tarjeta-lujo.
                   style={{ "--hilo": hilo(i).rgb } as React.CSSProperties}
-                  className="group relative isolate h-full overflow-hidden rounded-[var(--radius-carta)] border border-[rgb(var(--hilo)/0.35)] bg-[rgb(var(--hilo)/0.07)] p-8 transition-all duration-500 ease-[var(--ease-suave)] hover:-translate-y-1.5 hover:border-[rgb(var(--hilo)/0.6)] hover:shadow-[0_18px_48px_-14px_rgb(var(--hilo)/0.75)]"
+                  className="tarjeta-lujo grano group h-full rounded-[2rem] p-9 sm:p-10"
                 >
-                  {/* Resplandor: late suavemente mientras el cursor está encima */}
                   <span
                     aria-hidden
-                    className="absolute -inset-px -z-10 rounded-[inherit] bg-[radial-gradient(120%_90%_at_50%_0%,rgb(var(--hilo)/0.42),transparent_70%)] opacity-0 transition-opacity duration-500 ease-[var(--ease-suave)] group-hover:opacity-100 motion-safe:group-hover:animate-[resplandor_2.6s_ease-in-out_infinite]"
-                  />
-
-                  {/* Hilo de color que se teje de izquierda a derecha */}
-                  <span
-                    aria-hidden
-                    className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-[rgb(var(--hilo))] transition-transform duration-500 ease-[var(--ease-suave)] group-hover:scale-x-100"
-                  />
-
-                  <span
-                    aria-hidden
-                    className="grid h-13 w-13 place-items-center rounded-2xl border border-[rgb(var(--hilo)/0.45)] bg-white/75 p-3 text-tinta transition-all duration-500 group-hover:scale-105 group-hover:bg-white motion-reduce:group-hover:scale-100"
+                    className="circulo-hilo grid h-16 w-16 backdrop-blur-[6px] backdrop-saturate-150 place-items-center rounded-full p-4 text-tinta/85 group-hover:-translate-y-0.5 motion-reduce:group-hover:translate-y-0"
                   >
-                    <Icono className="h-6 w-6" />
+                    <Icono className="h-full w-full" />
                   </span>
 
-                  <h3 className="mt-6 font-display text-[1.3125rem] leading-snug text-tinta">
+                  <h3 className="mt-7 font-display text-[1.4375rem] font-medium leading-[1.18] tracking-[-0.02em] text-tinta">
                     {valor.titulo}
                   </h3>
-                  <p className="mt-3 text-[0.9375rem] leading-[1.68] text-tinta-70">
+                  <p className="mt-3.5 text-[0.9375rem] leading-[1.72] text-tinta-70">
                     {valor.texto}
                   </p>
                 </article>

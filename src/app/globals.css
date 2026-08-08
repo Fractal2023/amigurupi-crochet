@@ -157,10 +157,90 @@
     content: "";
     position: absolute;
     inset: 0;
+    border-radius: inherit;
     pointer-events: none;
     opacity: 0.5;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.11'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  /* ------------------------------------------------------------------
+     Tarjeta de papelería fina.
+
+     Cada tarjeta recibe su color por `--hilo` (tripleta RGB de la paleta)
+     y se rellena con dos degradados superpuestos: un brillo blanco que cae
+     desde la esquina superior izquierda y un tinte del hilo que se disuelve
+     hacia crema. Nada de blanco plano ni de bordes duros: el canto es una
+     línea interior translúcida y la profundidad viene de un resplandor
+     inferior, también interior, más la sombra ambiental.
+     ------------------------------------------------------------------ */
+  .tarjeta-lujo {
+    position: relative;
+    isolation: isolate;
+    background-image:
+      /* Luz que entra por la esquina superior izquierda */
+      radial-gradient(130% 88% at 12% 0%, rgb(255 255 255 / 0.9), transparent 56%),
+      /* Rescoldo de color abajo a la derecha: evita que el degradado
+         termine en blanco y le da volumen a la pieza */
+      radial-gradient(100% 82% at 100% 100%, rgb(var(--hilo) / 0.3), transparent 62%),
+      linear-gradient(
+        148deg,
+        rgb(var(--hilo) / 0.36) 0%,
+        rgb(var(--hilo) / 0.16) 52%,
+        rgb(var(--hilo) / 0.1) 100%
+      ),
+      linear-gradient(0deg, rgb(255 251 248 / 0.86), rgb(255 251 248 / 0.86));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.9),
+      inset 0 0 0 1px rgb(var(--hilo) / 0.24),
+      inset 0 -44px 64px -44px rgb(var(--hilo) / 0.55),
+      0 20px 44px -26px rgb(151 22 79 / 0.28),
+      0 3px 8px -4px rgb(151 22 79 / 0.1);
+    transition:
+      transform 420ms var(--ease-suave),
+      box-shadow 420ms var(--ease-suave);
+  }
+
+  /* Sólo en dispositivos con cursor: en táctil el hover se queda pegado. */
+  @media (hover: hover) {
+    .tarjeta-lujo:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.95),
+        inset 0 0 0 1px rgb(var(--hilo) / 0.4),
+        inset 0 -54px 78px -44px rgb(var(--hilo) / 0.72),
+        0 34px 62px -28px rgb(151 22 79 / 0.32),
+        0 0 42px -6px rgb(var(--hilo) / 0.5);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tarjeta-lujo:hover {
+      transform: none;
+    }
+  }
+
+  /* Círculo translúcido para los números del proceso y los iconos de
+     "por qué elegirnos": vidrio pastel con canto de luz, no una chapa. */
+  .circulo-hilo {
+    background-image: linear-gradient(
+      150deg,
+      rgb(255 255 255 / 0.94) 0%,
+      rgb(var(--hilo) / 0.3) 52%,
+      rgb(var(--hilo) / 0.58) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.95),
+      inset 0 0 0 1px rgb(255 255 255 / 0.5),
+      0 12px 26px -12px rgb(var(--hilo) / 0.75),
+      0 2px 6px -2px rgb(151 22 79 / 0.14);
+    /* El desenfoque de fondo se aplica con la utilidad `backdrop-blur-*`:
+       declarado aquí, Tailwind lo descarta al no emitir sus variables. */
+    transition:
+      transform 420ms var(--ease-suave),
+      box-shadow 420ms var(--ease-suave);
   }
 }
 
