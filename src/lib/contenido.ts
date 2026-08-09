@@ -8,7 +8,10 @@ export const marca = {
   nombre: "Amigurupi Crochet",
   lema: "Tú lo imaginas, yo lo tejo.",
   anios: 3,
-  whatsapp: "+52 1 962 119 2249",
+  /** Cómo se muestra el número en pantalla. */
+  telefono: "+52 962 119 2249",
+  /** El mismo número en formato E.164, para `tel:` y datos estructurados. */
+  telefonoE164: "+529621192249",
   whatsappUrl:
     "https://wa.me/529621192249?text=" +
     encodeURIComponent(
@@ -17,9 +20,21 @@ export const marca = {
   email: "lugalvez00@gmail.com",
   direccion: {
     calle: "Calle Central Oriente 510-B",
-    ciudad: "Motozintla, Chiapas",
+    ciudad: "Motozintla",
+    estado: "Chiapas",
     pais: "México",
+    /** Cómo se lee la ubicación en una sola línea. */
+    corta: "Motozintla, Chiapas",
   },
+  /** Localidades desde las que llegan la mayoría de los encargos. */
+  zonas: [
+    "Motozintla",
+    "Huixtla",
+    "Tapachula",
+    "Comitán",
+    "San Cristóbal de las Casas",
+    "Tuxtla Gutiérrez",
+  ],
   instagram: "https://www.instagram.com/amigurupicrochet",
   facebook: "https://www.facebook.com/amigurupicrochet",
 } as const;

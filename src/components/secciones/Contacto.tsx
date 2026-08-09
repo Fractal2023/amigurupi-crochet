@@ -18,7 +18,7 @@ const datos = [
   {
     icono: WhatsApp,
     etiqueta: "WhatsApp",
-    valor: marca.whatsapp,
+    valor: marca.telefono,
     href: marca.whatsappUrl,
     nota: "La forma más rápida de empezar tu encargo.",
   },
@@ -32,7 +32,7 @@ const datos = [
   {
     icono: Pin,
     etiqueta: "Taller",
-    valor: `${marca.direccion.calle}, ${marca.direccion.ciudad}`,
+    valor: `${marca.direccion.calle}, ${marca.direccion.corta}`,
     href: MAPA_ENLACE,
     nota: "Entrega local y punto de recolección.",
   },
@@ -180,7 +180,7 @@ export function Contacto() {
                 <span className="text-[0.875rem] leading-snug text-tinta">
                   <strong className="font-semibold">{marca.direccion.calle}</strong>
                   <br />
-                  {marca.direccion.ciudad}, {marca.direccion.pais}
+                  {marca.direccion.corta}, {marca.direccion.pais}
                 </span>
               </figcaption>
             </figure>

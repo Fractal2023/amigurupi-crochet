@@ -1,6 +1,7 @@
 import { BotonWhatsApp } from "@/components/BotonWhatsApp";
 import { DesplazamientoSuave } from "@/components/DesplazamientoSuave";
 import { Navegacion } from "@/components/Navegacion";
+import { Cobertura } from "@/components/secciones/Cobertura";
 import { Contacto } from "@/components/secciones/Contacto";
 import { Creaciones } from "@/components/secciones/Creaciones";
 import { Galeria } from "@/components/secciones/Galeria";
@@ -29,6 +30,7 @@ export default function Inicio() {
         <Testimonios />
         <Preguntas />
         <Contacto />
+        <Cobertura />
       </main>
 
       <Pie />

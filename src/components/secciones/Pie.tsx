@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { marca, navegacion } from "@/lib/contenido";
-import { Facebook, Instagram, Pin, Sobre, WhatsApp } from "../ui/Icono";
+import { Facebook, Instagram, Pin, Sobre, Telefono, WhatsApp } from "../ui/Icono";
 import { Cadeneta } from "../ui/Puntada";
 import { Flotantes } from "../Flotantes";
 
@@ -108,7 +108,17 @@ export function Pie() {
                   className="group inline-flex cursor-pointer items-center gap-2.5 transition-colors duration-300 hover:text-rosa-600"
                 >
                   <WhatsApp className="h-[1.05rem] w-[1.05rem] shrink-0 text-rosa-400" />
-                  {marca.whatsapp}
+                  {marca.telefono}
+                </Link>
+              </li>
+              <li>
+                {/* Enlace tel: para que el número se pueda marcar desde el móvil */}
+                <Link
+                  href={`tel:${marca.telefonoE164}`}
+                  className="group inline-flex cursor-pointer items-center gap-2.5 transition-colors duration-300 hover:text-rosa-600"
+                >
+                  <Telefono className="h-[1.05rem] w-[1.05rem] shrink-0 text-rosa-400" />
+                  Llamar al taller
                 </Link>
               </li>
               <li>
@@ -125,7 +135,7 @@ export function Pie() {
                 <span className="leading-relaxed">
                   {marca.direccion.calle}
                   <br />
-                  {marca.direccion.ciudad}, {marca.direccion.pais}
+                  {marca.direccion.corta}, {marca.direccion.pais}
                 </span>
               </li>
             </ul>
