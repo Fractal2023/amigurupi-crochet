@@ -21,13 +21,16 @@ export function hilo(i: number) {
 }
 
 /**
- * Secuencia de los cinco pasos del proceso: rosa, durazno, crema, agua y
- * lavanda. Se salta el cielo para que la lavanda caiga en el último paso.
+ * Las tarjetas usan un solo color más la crema del papel, y van rotando
+ * entre cuatro pastel: rosa, durazno, lavanda y agua. Se dejan fuera el sol
+ * y el cielo para que la sección no se vuelva un arcoíris.
  */
-export const hilosProceso = [
-  hilos[0], // rosa
-  hilos[1], // coral / durazno
-  hilos[2], // sol / crema cálida
-  hilos[3], // menta / agua
-  hilos[5], // lila / lavanda
-] as const;
+const rotacion = [hilos[0], hilos[1], hilos[5], hilos[3]] as const;
+
+/** Color de la tarjeta número `i`, dando la vuelta al final. */
+export function hiloTarjeta(i: number) {
+  return rotacion[i % rotacion.length];
+}
+
+/** Los cinco pasos: rosa, durazno, lavanda, agua y otra vez rosa. */
+export const hilosProceso = [0, 1, 2, 3, 4].map(hiloTarjeta);

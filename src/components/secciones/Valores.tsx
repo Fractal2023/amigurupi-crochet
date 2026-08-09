@@ -1,21 +1,21 @@
 "use client";
 
 import { valores } from "@/lib/contenido";
-import { hilo } from "@/lib/hilos";
+import { hiloTarjeta } from "@/lib/hilos";
 import { iconos } from "../ui/Icono";
-import { Bucle, Chispita, CorazonLleno, Espiral, Flor, Puntada } from "../ui/Adornos";
+import { Bucle, Chispita, CorazonLleno, Flor, Puntada } from "../ui/Adornos";
 import { Eyebrow } from "../ui/Puntada";
 import { Escalonado, Hijo, Revelar, TituloRevelado } from "../ui/Movimiento";
 import { Flotantes } from "../Flotantes";
 
 /** Mismo lenguaje que el proceso: silueta propia y adorno propio por tarjeta. */
 const siluetas = [
-  { radio: "2.75rem 1.25rem 2.5rem 1.5rem", giro: -0.6, Adorno: Flor },
-  { radio: "1.25rem 2.75rem 1.5rem 2.5rem", giro: 0.5, Adorno: Bucle },
-  { radio: "2.5rem 1.5rem 1.25rem 2.75rem", giro: -0.5, Adorno: CorazonLleno },
-  { radio: "1.5rem 2.5rem 2.75rem 1.25rem", giro: 0.6, Adorno: Puntada },
-  { radio: "2.75rem 2rem 1.5rem 2.25rem", giro: -0.7, Adorno: Chispita },
-  { radio: "1.5rem 2.75rem 2.25rem 1.5rem", giro: 0.55, Adorno: Flor },
+  { radio: "2.5rem 1rem 2.25rem 1.25rem", giro: -0.7, Adorno: Flor },
+  { radio: "1rem 2.5rem 1.25rem 2.25rem", giro: 0.6, Adorno: Bucle },
+  { radio: "2.25rem 1.25rem 1rem 2.5rem", giro: -0.6, Adorno: CorazonLleno },
+  { radio: "1.25rem 2.25rem 2.5rem 1rem", giro: 0.7, Adorno: Puntada },
+  { radio: "2.5rem 1.75rem 1.25rem 2rem", giro: -0.8, Adorno: Chispita },
+  { radio: "1.25rem 2.5rem 2rem 1.25rem", giro: 0.65, Adorno: Flor },
 ];
 
 export function Valores() {
@@ -47,23 +47,23 @@ export function Valores() {
             return (
               <Hijo as="li" key={valor.titulo}>
                 <article
-                  // --hilo lleva el color de la paleta que le toca; el relleno
-                  // en degradado, la puntada y el canto los ponen las clases.
+                  // Dos colores por pieza: el pastel de --hilo y la crema.
+                  // El relleno liso, el contorno y el festón los ponen las
+                  // clases; aquí sólo va el color y la silueta.
                   style={
                     {
-                      "--hilo": hilo(i).rgb,
+                      "--hilo": hiloTarjeta(i).rgb,
                       borderRadius: radio,
                       rotate: `${giro}deg`,
                     } as React.CSSProperties
                   }
-                  className="tarjeta-lujo puntada-borde grano group h-full p-9 sm:p-10 motion-reduce:rotate-0"
+                  className="tarjeta-plana puntada-borde feston-inferior group h-full px-9 pb-14 pt-9 sm:px-10 sm:pb-16 sm:pt-10 motion-reduce:rotate-0"
                 >
                   <span
                     aria-hidden
-                    className="boton-ovillo relative grid h-16 w-16 place-items-center overflow-hidden rounded-full text-tinta/85 group-hover:-translate-y-0.5 motion-reduce:group-hover:translate-y-0"
+                    className="aro-plano grid h-16 w-16 place-items-center rounded-full text-tinta group-hover:-translate-y-0.5 motion-reduce:group-hover:translate-y-0"
                   >
-                    <Espiral className="absolute inset-0 h-full w-full text-[rgb(var(--hilo))] opacity-25" />
-                    <Icono className="relative h-7 w-7" />
+                    <Icono className="h-7 w-7" />
                   </span>
 
                   <h3 className="mt-7 font-display text-[1.4375rem] font-medium leading-[1.18] tracking-[-0.02em] text-tinta">
@@ -73,7 +73,7 @@ export function Valores() {
                     {valor.texto}
                   </p>
 
-                  <Adorno className="pointer-events-none absolute bottom-6 right-6 h-9 w-9 text-[rgb(var(--hilo))] opacity-45" />
+                  <Adorno className="pointer-events-none absolute bottom-16 right-7 h-8 w-8 text-[var(--trazo-hilo)] opacity-60" />
                 </article>
               </Hijo>
             );

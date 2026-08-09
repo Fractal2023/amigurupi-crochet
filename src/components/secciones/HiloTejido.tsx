@@ -52,6 +52,7 @@ export function HiloTejido({
   const [caja, setCaja] = useState({ w: 0, h: 0 });
   const [ruta, setRuta] = useState("");
   const [ovillo, setOvillo] = useState<Punto | null>(null);
+  const [enFila, setEnFila] = useState(false);
 
   // --- Medición: se recalcula al cambiar de tamaño o de disposición ---
   useEffect(() => {
@@ -71,40 +72,68 @@ export function HiloTejido({
         };
       });
 
-      // El ovillo va bastante por encima del primer paso, para que no se
-      // encime con la primera tarjeta y el hilo tenga recorrido que mostrar.
-      const inicio = { x: centros[0].x, y: Math.max(42, centros[0].y - 168) };
+      const primero = centros[0];
+      const ultimo = centros[centros.length - 1];
+
+      // En escritorio los pasos se despliegan en fila y en móvil en columna.
+      // El vaivén del hilo tiene que ir siempre perpendicular al recorrido.
+      const horizontal =
+        Math.abs(ultimo.x - primero.x) > Math.abs(ultimo.y - primero.y);
+
+      // El ovillo se aparta del primer paso para que no se encime con su
+      // tarjeta y el hilo tenga recorrido que mostrar.
+      const inicio = horizontal
+        ? { x: Math.max(44, primero.x - 112), y: primero.y }
+        : { x: primero.x, y: Math.max(42, primero.y - 168) };
 
       // Puntos de paso intermedios que mecen el hilo a un lado y al otro:
       // sin ellos la curva entre pasos alineados sería una recta.
       const conOndas: Punto[] = [inicio];
       const todos = [inicio, ...centros];
+      const margen = 14;
+
       for (let i = 0; i < todos.length - 1; i++) {
         const a = todos[i];
         const b = todos[i + 1];
-        const dy = b.y - a.y;
+        const medio = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
         const lado = i % 2 === 0 ? 1 : -1;
-        const medioX = (a.x + b.x) / 2;
-        // El vaivén nunca puede empujar el hilo fuera del contenedor: en
-        // móvil los pasos van pegados al margen izquierdo y la sección
-        // recorta lo que se salga.
-        const margen = 14;
-        const sitio =
-          lado > 0 ? base.width - medioX - margen : medioX - margen;
+        const avance = horizontal ? b.x - a.x : b.y - a.y;
+
+        // El vaivén nunca puede empujar el hilo fuera del contenedor: la
+        // sección recorta lo que se salga.
+        const sitio = horizontal
+          ? lado > 0
+            ? base.height - medio.y - margen
+            : medio.y - margen
+          : lado > 0
+            ? base.width - medio.x - margen
+            : medio.x - margen;
+
         const amplitud = Math.max(
           0,
-          Math.min(52, Math.abs(dy) * 0.24, sitio),
+          Math.min(horizontal ? 40 : 52, Math.abs(avance) * 0.24, sitio),
         );
-        conOndas.push({ x: medioX + lado * amplitud, y: a.y + dy * 0.5 });
+
+        conOndas.push(
+          horizontal
+            ? { x: medio.x, y: medio.y + lado * amplitud }
+            : { x: medio.x + lado * amplitud, y: medio.y },
+        );
         conOndas.push(b);
       }
 
       // Rizo final: el hilo se despide con una vuelta suave.
-      const ultimo = centros[centros.length - 1];
-      const rizo = Math.min(26, ultimo.x - 14);
-      conOndas.push({ x: ultimo.x - rizo, y: ultimo.y + 46 });
-      conOndas.push({ x: ultimo.x + 8, y: ultimo.y + 84 });
+      if (horizontal) {
+        const rizo = Math.min(34, base.width - ultimo.x - margen);
+        conOndas.push({ x: ultimo.x + rizo, y: ultimo.y - 24 });
+        conOndas.push({ x: ultimo.x + rizo * 1.6, y: ultimo.y + 10 });
+      } else {
+        const rizo = Math.min(26, ultimo.x - margen);
+        conOndas.push({ x: ultimo.x - rizo, y: ultimo.y + 46 });
+        conOndas.push({ x: ultimo.x + 8, y: ultimo.y + 84 });
+      }
 
+      setEnFila(horizontal);
       setCaja({ w: base.width, h: base.height });
       setOvillo(inicio);
       setRuta(suavizar(conOndas));
@@ -163,7 +192,13 @@ export function HiloTejido({
       fill="none"
     >
       <defs>
-        <linearGradient id="hilo-degradado" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient
+          id="hilo-degradado"
+          x1="0"
+          y1="0"
+          x2={enFila ? "1" : "0"}
+          y2={enFila ? "0" : "1"}
+        >
           <stop offset="0%" stopColor="var(--color-rosa)" />
           <stop offset="28%" stopColor="var(--color-coral)" />
           <stop offset="52%" stopColor="var(--color-sol)" />
@@ -172,14 +207,7 @@ export function HiloTejido({
         </linearGradient>
       </defs>
 
-      {/* Sombra del hilo: el mismo recorrido, difuso, para darle cuerpo */}
-      <path
-        d={ruta}
-        stroke="rgb(249 138 191 / 0.22)"
-        strokeWidth={9}
-        strokeLinecap="round"
-      />
-      {/* Hilo tejido */}
+      {/* Hilo tejido: un solo trazo limpio, sin halos ni sombras */}
       <path
         ref={trazo}
         d={ruta}
@@ -188,44 +216,28 @@ export function HiloTejido({
         strokeLinecap="round"
       />
 
-      {/* Ovillo del que sale el hilo */}
+      {/* Ovillo del que sale el hilo: plano, con su contorno dibujado */}
       {ovillo ? (
         <g transform={`translate(${ovillo.x} ${ovillo.y})`}>
-          <circle r="46" fill="rgb(249 138 191 / 0.14)" />
           <circle
-            r="34"
-            fill="rgb(253 201 225 / 0.96)"
-            stroke="rgb(239 98 163 / 0.45)"
-            strokeWidth="1.4"
+            r="32"
+            fill="var(--color-rosa)"
+            stroke="var(--color-rosa-600)"
+            strokeWidth="2"
           />
           {/* Vueltas del estambre */}
           <g
-            stroke="rgb(222 61 134 / 0.38)"
-            strokeWidth="1.6"
+            stroke="var(--color-rosa-600)"
+            strokeWidth="2"
             strokeLinecap="round"
             fill="none"
+            opacity="0.7"
           >
-            <path d="M-31 -13C-17 -4 3 13 11 31" />
-            <path d="M-23 -25C-7 -15 15 5 24 21" />
-            <path d="M-10 -32C5 -22 23 -5 31 10" />
-            <path d="M6 -33C17 -25 27 -13 33 -2" />
-            <path d="M-32 4C-22 10 -10 22 -4 33" />
+            <path d="M-29 -12C-16 -4 3 12 10 29" />
+            <path d="M-21 -23C-6 -14 14 5 22 20" />
+            <path d="M-9 -30C5 -21 21 -5 29 9" />
+            <path d="M6 -31C16 -23 25 -12 31 -2" />
           </g>
-          {/* Brillo alto, como el de una madeja de algodón */}
-          <ellipse
-            cx="-11"
-            cy="-14"
-            rx="13"
-            ry="9"
-            transform="rotate(-32 -11 -14)"
-            fill="rgb(255 255 255 / 0.45)"
-          />
-          <circle
-            r="34"
-            fill="none"
-            stroke="rgb(255 255 255 / 0.55)"
-            strokeWidth="1.2"
-          />
         </g>
       ) : null}
     </svg>
