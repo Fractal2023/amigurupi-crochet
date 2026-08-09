@@ -20,7 +20,7 @@ const siluetas = [
 
 export function Valores() {
   return (
-    <section className="relative overflow-hidden bg-lienzo py-24 sm:py-32 lg:py-40">
+    <section className="relative overflow-hidden bg-lienzo py-16 sm:py-20 lg:py-28">
       <Flotantes patron={1} />
       <div className="mx-auto w-full max-w-[88rem] px-5 sm:px-8">
         <header className="mx-auto max-w-[40rem] text-center">

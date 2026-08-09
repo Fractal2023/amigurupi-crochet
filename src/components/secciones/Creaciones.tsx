@@ -50,7 +50,7 @@ export function Creaciones() {
   return (
     <section
       id="creaciones"
-      className="grano relative scroll-mt-24 overflow-hidden bg-[linear-gradient(170deg,var(--color-rosa-100)_0%,var(--color-blush)_45%,var(--color-rosa-100)_100%)] py-24 text-tinta sm:py-32 lg:py-40"
+      className="grano relative scroll-mt-24 overflow-hidden bg-[linear-gradient(170deg,var(--color-rosa-100)_0%,var(--color-blush)_45%,var(--color-rosa-100)_100%)] py-16 text-tinta sm:py-20 lg:py-28"
       onMouseEnter={() => setPausado(true)}
       onMouseLeave={() => setPausado(false)}
       onFocusCapture={() => setPausado(true)}

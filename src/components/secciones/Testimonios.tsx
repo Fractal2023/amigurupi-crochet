@@ -8,7 +8,7 @@ import { Flotantes } from "../Flotantes";
 
 export function Testimonios() {
   return (
-    <section className="grano relative overflow-hidden bg-velo py-24 sm:py-32 lg:py-40">
+    <section className="grano relative overflow-hidden bg-velo py-16 sm:py-20 lg:py-28">
       <Flotantes patron={2} />
       <div
         aria-hidden

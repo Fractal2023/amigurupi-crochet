@@ -52,7 +52,7 @@ export function Galeria() {
   return (
     <section
       id="galeria"
-      className="relative scroll-mt-24 overflow-hidden bg-lienzo py-24 sm:py-32 lg:py-40"
+      className="relative scroll-mt-24 overflow-hidden bg-lienzo py-16 sm:py-20 lg:py-28"
     >
       <Flotantes patron={2} />
       <div

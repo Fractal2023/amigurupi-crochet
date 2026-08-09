@@ -48,7 +48,7 @@ export function Contacto() {
   return (
     <section
       id="contacto"
-      className="relative scroll-mt-24 overflow-hidden bg-lienzo pb-24 pt-24 sm:pb-32 sm:pt-32 lg:pb-40 lg:pt-40"
+      className="relative scroll-mt-24 overflow-hidden bg-lienzo pb-16 pt-16 sm:pb-20 sm:pt-20 lg:pb-28 lg:pt-28"
     >
       <Flotantes patron={1} />
       {/* ---------- Llamado final con la mascota ---------- */}
@@ -107,7 +107,7 @@ export function Contacto() {
       </div>
 
       {/* ---------- Datos de contacto y mapa ---------- */}
-      <div className="mx-auto mt-24 w-full max-w-[88rem] px-5 sm:px-8 lg:mt-32">
+      <div className="mx-auto mt-16 w-full max-w-[88rem] px-5 sm:px-8 lg:mt-24">
         <header className="max-w-[40rem]">
           <Revelar>
             <Eyebrow>Contacto</Eyebrow>

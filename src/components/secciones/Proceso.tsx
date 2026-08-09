@@ -31,7 +31,7 @@ export function Proceso() {
   return (
     <section
       id="proceso"
-      className="relative scroll-mt-24 overflow-hidden bg-velo py-24 sm:py-32 lg:py-40"
+      className="relative scroll-mt-24 overflow-hidden bg-velo py-16 sm:py-20 lg:py-28"
     >
       <Flotantes patron={1} />
       <div
@@ -71,7 +71,7 @@ export function Proceso() {
             de la sección. */}
         <ol
           ref={pista}
-          className="relative isolate mt-28 pt-20 sm:mt-32 lg:mt-24 lg:flex lg:items-start lg:gap-4 lg:pl-28 lg:pt-14"
+          className="relative isolate mt-24 pt-20 sm:mt-28 lg:mt-16 lg:flex lg:items-start lg:gap-4 lg:pl-28 lg:pt-14"
         >
           <HiloTejido contenedor={pista} ancla="[data-ancla]" />
 
@@ -106,7 +106,7 @@ export function Proceso() {
         </ol>
 
         <Revelar retraso={0.1}>
-          <div className="mt-20 flex flex-col items-center gap-4 text-center lg:mt-28">
+          <div className="mt-14 flex flex-col items-center gap-4 text-center lg:mt-20">
             <Boton
               href={marca.whatsappUrl}
               icono={<Flecha className="h-[1.05rem] w-[1.05rem]" />}

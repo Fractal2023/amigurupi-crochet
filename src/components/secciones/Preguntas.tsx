@@ -15,7 +15,7 @@ export function Preguntas() {
   return (
     <section
       id="faq"
-      className="relative scroll-mt-24 overflow-hidden bg-lienzo py-24 sm:py-32 lg:py-40"
+      className="relative scroll-mt-24 overflow-hidden bg-lienzo py-16 sm:py-20 lg:py-28"
     >
       <Flotantes patron={0} />
       <div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
