@@ -7,7 +7,7 @@ import { Boton } from "../ui/Boton";
 import { Flecha, Mas } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
 import { Revelar, TituloRevelado } from "../ui/Movimiento";
-import { Corazones } from "../Corazones";
+import { Flotantes } from "../Flotantes";
 
 export function Preguntas() {
   const [abierta, setAbierta] = useState<number | null>(0);
@@ -17,7 +17,7 @@ export function Preguntas() {
       id="faq"
       className="relative scroll-mt-24 overflow-hidden bg-lienzo py-24 sm:py-32 lg:py-40"
     >
-      <Corazones patron={0} />
+      <Flotantes patron={0} />
       <div className="mx-auto grid w-full max-w-[88rem] grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <Revelar>

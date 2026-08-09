@@ -4,12 +4,12 @@ import { testimonios } from "@/lib/contenido";
 import { Estrella } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
 import { Escalonado, Hijo, Revelar, TituloRevelado } from "../ui/Movimiento";
-import { Corazones } from "../Corazones";
+import { Flotantes } from "../Flotantes";
 
 export function Testimonios() {
   return (
     <section className="grano relative overflow-hidden bg-velo py-24 sm:py-32 lg:py-40">
-      <Corazones patron={1} />
+      <Flotantes patron={2} />
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,var(--color-lienzo),transparent)]"

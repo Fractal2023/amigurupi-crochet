@@ -6,7 +6,7 @@ import { iconos } from "../ui/Icono";
 import { Bucle, Chispita, CorazonLleno, Espiral, Flor, Puntada } from "../ui/Adornos";
 import { Eyebrow } from "../ui/Puntada";
 import { Escalonado, Hijo, Revelar, TituloRevelado } from "../ui/Movimiento";
-import { Corazones } from "../Corazones";
+import { Flotantes } from "../Flotantes";
 
 /** Mismo lenguaje que el proceso: silueta propia y adorno propio por tarjeta. */
 const siluetas = [
@@ -21,7 +21,7 @@ const siluetas = [
 export function Valores() {
   return (
     <section className="relative overflow-hidden bg-lienzo py-24 sm:py-32 lg:py-40">
-      <Corazones patron={0} />
+      <Flotantes patron={1} />
       <div className="mx-auto w-full max-w-[88rem] px-5 sm:px-8">
         <header className="mx-auto max-w-[40rem] text-center">
           <Revelar className="flex justify-center">

@@ -7,12 +7,13 @@ import { marca } from "@/lib/contenido";
 import { Boton } from "../ui/Boton";
 import { Corazon, Flecha, Lupa } from "../ui/Icono";
 import { HilosDeMarca } from "../ui/Puntada";
+import { Flotantes } from "../Flotantes";
 
 const SUAVE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Destellos sobre el video. Los corazones ya no viven aquí: los pone
- * `<Corazones />` para toda la página, así no se duplican en el hero.
+ * Destellos sobre el video. Los corazones y ovillos los pone
+ * `<Flotantes />`, que acompaña a todas las secciones por igual.
  */
 const adornos = [
   { x: "42%", y: "12%", s: 14, d: 2.2, t: 8 },
@@ -106,6 +107,8 @@ export function Hero() {
         aria-hidden
         className="absolute inset-x-0 bottom-0 -z-20 h-56 bg-[linear-gradient(180deg,transparent,var(--color-lienzo))]"
       />
+
+      <Flotantes patron={2} />
 
       {/* ---------- Adornos flotantes ---------- */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">

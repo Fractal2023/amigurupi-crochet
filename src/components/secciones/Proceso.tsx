@@ -9,7 +9,7 @@ import { Flecha } from "../ui/Icono";
 import { Bucle, Chispita, CorazonLleno, Espiral, Flor, Puntada } from "../ui/Adornos";
 import { Eyebrow } from "../ui/Puntada";
 import { Revelar, TituloRevelado } from "../ui/Movimiento";
-import { Corazones } from "../Corazones";
+import { Flotantes } from "../Flotantes";
 import { HiloTejido } from "./HiloTejido";
 
 /**
@@ -33,7 +33,7 @@ export function Proceso() {
       id="proceso"
       className="grano relative scroll-mt-24 overflow-hidden bg-velo py-24 sm:py-32 lg:py-40"
     >
-      <Corazones patron={1} />
+      <Flotantes patron={1} />
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,var(--color-lienzo),transparent)]"

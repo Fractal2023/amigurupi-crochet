@@ -75,4 +75,23 @@ export const Espiral = (p: Props) => (
   </Trazo>
 );
 
+/**
+ * Ovillo diminuto con su hebra colgando. Trazo grueso y muy pocos detalles:
+ * a 12–18px cualquier cosa más fina se convierte en una mancha.
+ */
+export const OvilloMini = (p: Props) => (
+  <Trazo {...p} strokeWidth={3}>
+    <circle cx="21" cy="21" r="13" />
+    <path d="M11 13c5 2 11 8 13 14M15 9.5c6 2.5 12.5 9 15 15M28 9c4 2.5 7 6 8.5 9.5" />
+    <path d="M31 30c4 3 6 7 4.5 10.5" />
+  </Trazo>
+);
+
+/** Hebra suelta rizada, como un cabo de estambre. */
+export const HebraMini = (p: Props) => (
+  <Trazo {...p} strokeWidth={3}>
+    <path d="M9 12c9 0 13 6 13 12s3 11 9 11c4.2 0 6.5-2.8 6.5-6 0-2.8-1.9-4.8-4.2-4.8-2 0-3.4 1.4-3.4 3.1" />
+  </Trazo>
+);
+
 export const adornos = [Flor, Bucle, CorazonLleno, Chispita, Puntada] as const;

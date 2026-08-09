@@ -7,7 +7,7 @@ import { categorias, piezas, type CategoriaId, type Pieza } from "@/lib/contenid
 import { Cruz, Flecha, Lupa } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
 import { Revelar, TituloRevelado } from "../ui/Movimiento";
-import { Corazones } from "../Corazones";
+import { Flotantes } from "../Flotantes";
 
 const SUAVE = [0.22, 1, 0.36, 1] as const;
 
@@ -54,7 +54,7 @@ export function Galeria() {
       id="galeria"
       className="relative scroll-mt-24 overflow-hidden bg-lienzo py-24 sm:py-32 lg:py-40"
     >
-      <Corazones patron={0} />
+      <Flotantes patron={2} />
       <div
         aria-hidden
         className="absolute -right-40 top-1/3 -z-10 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(190,163,240,0.14),transparent_66%)] blur-2xl"

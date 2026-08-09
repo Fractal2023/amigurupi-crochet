@@ -8,7 +8,7 @@ import { Boton } from "../ui/Boton";
 import { Flecha } from "../ui/Icono";
 import { Eyebrow } from "../ui/Puntada";
 import { Revelar, TituloRevelado } from "../ui/Movimiento";
-import { Corazones } from "../Corazones";
+import { Flotantes } from "../Flotantes";
 
 const SUAVE = [0.22, 1, 0.36, 1] as const;
 
@@ -56,7 +56,7 @@ export function Creaciones() {
       onFocusCapture={() => setPausado(true)}
       onBlurCapture={() => setPausado(false)}
     >
-      <Corazones patron={1} />
+      <Flotantes patron={0} />
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-[radial-gradient(90%_60%_at_20%_0%,rgba(249,138,191,0.32),transparent_62%),radial-gradient(80%_60%_at_92%_96%,rgba(255,154,92,0.18),transparent_60%)]"

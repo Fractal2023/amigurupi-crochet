@@ -3,6 +3,7 @@ import Link from "next/link";
 import { marca, navegacion } from "@/lib/contenido";
 import { Facebook, Instagram, Pin, Sobre, WhatsApp } from "../ui/Icono";
 import { Cadeneta } from "../ui/Puntada";
+import { Flotantes } from "../Flotantes";
 
 const servicios = [
   "Amigurumis personalizados",
@@ -24,6 +25,7 @@ const redes = [
 export function Pie() {
   return (
     <footer className="grano relative overflow-hidden bg-velo pt-20">
+      <Flotantes patron={2} />
       <Cadeneta className="absolute inset-x-0 top-0 h-6 w-full text-rosa-300" />
       <div
         aria-hidden
